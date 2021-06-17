@@ -310,7 +310,7 @@ int main()
 #ifdef SAKIB_OVI
     clock_t tStart = clock();
     freopen("input.txt","r",stdin);
-    freopen("res.txt","w",stdout);
+    freopen("output.txt","w",stdout);
 
 #endif
    
@@ -332,8 +332,9 @@ while(t--)
          sum*=i;
      }
      cout<<sum<<endl;
-    int g=n%sum;
-    for(int i=0;i<n;i++)
+  unsigned  long  long g=n%sum;
+     sort(str.begin(), str.end());
+         for(int i=0;i<g;i++)
     {
             next_permutation(str.begin(),
                              str.end());
