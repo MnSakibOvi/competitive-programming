@@ -146,7 +146,7 @@ for(int i=0;i<=n;i++)
         continue;
     if((a*a)+b==n && (b*b)+a==m)
     {
-        cout<<a<<b<<endl;
+       // cout<<a<<b<<endl;
         cnt++;
     }
 }

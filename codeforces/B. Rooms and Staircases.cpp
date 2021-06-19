@@ -169,8 +169,8 @@ while(t--)
             b=i+1;
 
     }
-    cout<<a<<" "<<b<<endl;
-    cout<<"-->";
+//    cout<<a<<" "<<b<<endl;
+//    cout<<"-->";
     if(a==b && a!=0)
     {
         int g=n-a+1;
