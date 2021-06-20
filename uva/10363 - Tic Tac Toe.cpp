@@ -35,7 +35,12 @@ while(t--)
             o++;
 
     }
-    cout<<x<<" "<<o<<endl;
+    //cout<<x<<" "<<o<<endl;
+    if(x==o || x=c+1)
+        cout<<"yes"<<endl;
+        else
+            cout<<"no"<<endl;
+
 
 }
 }
