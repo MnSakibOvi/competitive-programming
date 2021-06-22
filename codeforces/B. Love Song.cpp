@@ -33,7 +33,7 @@ using namespace std;
 #define pf              printf
 #define cspf(i)         pf("Case #%d: ", i)
 #define spc             pf(" ")
-#define line            pf("\n");
+#define line            pf("\n")
 #define yes             cout<<"YES"<<endl
 #define no             cout<<"NO"<<endl
 #define dib(x)         printf("x = %d,",x)
@@ -75,7 +75,6 @@ using namespace std;
 #define inf             0x3f3f3f3f
 #define PI              acos(-1.0)  // 3.1415926535897932
 #define eps             1e-6
-
 //#define run_time
 
 
@@ -154,7 +153,6 @@ while(q--)
         sum+=g;
     }
    pfl1(sum);
-   line
 }
 
     #ifdef SAKIB_OVI

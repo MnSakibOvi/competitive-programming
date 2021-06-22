@@ -1,5 +1,4 @@
 
-
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -33,7 +32,7 @@ using namespace std;
 #define pf              printf
 #define cspf(i)         pf("Case #%d: ", i)
 #define spc             pf(" ")
-#define line            pf("\n");
+#define line            pf("\n")
 #define yes             cout<<"YES"<<endl
 #define no             cout<<"NO"<<endl
 #define dib(x)         printf("x = %d,",x)
@@ -75,7 +74,6 @@ using namespace std;
 #define inf             0x3f3f3f3f
 #define PI              acos(-1.0)  // 3.1415926535897932
 #define eps             1e-6
-
 //#define run_time
 
 
@@ -133,33 +131,28 @@ int main()
   #ifdef SAKIB_OVI
        clock_t tStart = clock();
        freopen("input.txt","r",stdin);
-       freopen("out.txt","w",stdout);
+       freopen("output.txt","w",stdout);
 
    #endif
-          int t;
-  int n,q;
+       string str,str1;
+       while(cin>>str>>str1)
+       {
+           int k=0;
+           for(int i=0;i<str1.size();i++)
+           {
+               if(str1[i]==str[k])
+               {
+                   k++;
+               }
 
-sc2(n,q);
-string str;
-cin>>str;
-while(q--)
-{
-    int l,r;
-     ll sum=0;
-   sc2(l,r);
- FOR(i,l-1,r)
-    {
-        int g=str[i]-96;
+           }
+           (k==str.size())?cout<<"Yes"<<endl:cout<<"No"<<endl;
 
-        sum+=g;
-    }
-   pfl1(sum);
-   line
-}
+       }
+
 
     #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
     #endif
        return 0;
       }
-
