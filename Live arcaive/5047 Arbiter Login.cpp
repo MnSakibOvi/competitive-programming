@@ -136,7 +136,7 @@ int main()
        freopen("out.txt","w",stdout);
 
    #endif
-    
+
     int t;
     cin>>t;
     FOR(cas,1,t+1)

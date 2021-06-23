@@ -1,7 +1,2 @@
-82
-125
-9
-191
-62
-63
-97
+Case 1: Wrong password. Please, check your caps lock key.
+Case 2: Wrong password.

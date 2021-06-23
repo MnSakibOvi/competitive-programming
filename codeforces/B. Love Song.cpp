@@ -33,7 +33,7 @@ using namespace std;
 #define pf              printf
 #define cspf(i)         pf("Case #%d: ", i)
 #define spc             pf(" ")
-#define line            pf("\n")
+#define line            pf("\n");
 #define yes             cout<<"YES"<<endl
 #define no             cout<<"NO"<<endl
 #define dib(x)         printf("x = %d,",x)
@@ -141,18 +141,33 @@ int main()
 sc2(n,q);
 string str;
 cin>>str;
+ ll sum=0;
+ vector<ll>v;
+ FOR(i,0,str.size())
+   {
+       int g=str[i]-96;
+
+        sum+=g;
+        v.pb(sum);
+   }
 while(q--)
 {
     int l,r;
-     ll sum=0;
-   sc2(l,r);
- FOR(i,l-1,r)
-    {
-        int g=str[i]-96;
 
-        sum+=g;
-    }
-   pfl1(sum);
+   sc2(l,r);
+   l--;
+   r--;
+   if(l==0)
+   {
+       pfl1(v[r]);line
+   }
+   else
+   {
+       pfl1(v[r]-v[l-1]);line
+   }
+
+
+
 }
 
     #ifdef SAKIB_OVI
