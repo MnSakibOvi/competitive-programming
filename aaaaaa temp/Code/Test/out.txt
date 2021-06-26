@@ -1,2 +1,6 @@
-Case 1: Wrong password. Please, check your caps lock key.
-Case 2: Wrong password.
+Case #1: 6.00
+Case #2: 6.00
+Case #3: 9.00
+Case #4: 3.00
+Case #5: 50.00
+Case #6: 50.00

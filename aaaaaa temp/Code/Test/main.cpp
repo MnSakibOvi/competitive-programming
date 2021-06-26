@@ -127,7 +127,29 @@ int dx[] = { 1,-1, 0, 0};                //graph moves
 int dy[] = { 0, 0, 1,-1};               //graph moves
 
 
+string make(int n,int k)
+{
+    int g=n- k;
+    string str = "";
+    for(int i=0;i<n;i++)
+    {
+        if(i<g)
+            str+='0';
+        else
+            str+='1';
+    }
+    return str;
+}
+string revarse(string s)
+{
 
+    string ss="";
+    for(int i=s.size()-1;i>=0;i--)
+    {
+        ss+=s[i];
+    }
+    return ss;
+}
 int main()
 {
   #ifdef SAKIB_OVI
@@ -136,112 +158,32 @@ int main()
        freopen("out.txt","w",stdout);
 
    #endif
-    
-    int t;
-    cin>>t;
-    FOR(cas,1,t+1)
-    {
-        string str,str2;
-        cin>>str>>str2;
-        if(str==str2)
-        {
-            cout<<"Case "<<cas<<": Login successful."<<endl;
-        }
-        else
-        {
-            int flag=0,num1=0,num2=0,cs=0;
-            if(str2.size()>str.size())
-                flag=1;
-            else
-            {
-                int k=0;
-              for(int i=0;i<str.size();i++)
-              {
-                 if(str[i]>='0' && str[i]<='9')
-                 num1=1;
-                if(str2[k]>='0' && str2[k]<='9')
-                 num2=1;
-                 if(k+1<str2.size())
-                    k++;
+int t;
+ cin>>t;
+ for(int cas=1;cas<=t;cas++)
+ {
+     int n;
+     cin>>n;
+     vector< pair <int,int> > vect;
+     int a,b;
+     for(int i=0;i<n;i++)
+     {
+        cin>>a>>b;
+         vect.push_back( make_pair(a,b) );
+     }
+     double mx=INT_MIN;
+      sort(vect.begin(), vect.end());
+      for (int i=0; i<n-1; i++)
+      {
+        double tm=vect[i+1].first-vect[i].first;
+        double km=abs(vect[i+1].second-vect[i].second);
+        //cout<<tm<<" "<<km<<endl;
+        double res=km/tm;
+        mx=max(res,mx);
 
-              }
-              k=0;
-              if(num1==0 && num2==1)
-              flag=1;
-
-              for(int i=0;i<str.size();i++)
-              {
-                  char a=str[i];
-                  char c=str2[k];
-                if(str[i]>='0' && str[i]<='9' && num2==0)
-                {
-                    k--;
-                }
-                if(num1==1 && num2==1 )
-                {
-                    if(str[i]>='0' && str[i]<='9' && str[i]!=str2[i])
-                    flag=1;
-
-
-                }
-
-                 else if(str[i]==str2[k])
-                 {
-                     cs=1;
-                 }
-                  if(k+1<str2.size())
-                    k++;
-
-              }
-              k=0;
-            for(int i=0;i<str.size();i++)
-            {
-                char a=str[i];
-                  char b=str2[k],c;
-                  if(a>='a' && a<='z')
-                    c=a-32;
-                  else if(a>='A' && a<='Z')
-                    c=a+32;
-                  //  cout<<"->"<<a<<b<<c<<endl;
-                  if(str[i]>='0' && str[i]<='9')
-                {
-                    if(num2==0)
-                       k--;
-                }
-                else if(cs==1 && a!=b)
-                {
-                    flag=1;
-
-                }
-                else if(cs==0 && b!=c)
-                {
-                   // cout<<"->>>>>>"<<a<<b<<c<<endl;
-                    flag=1;
-                }
-
-               if(k+1<str2.size())
-                    k++;
-
-            }
-
-            }
-
-            //cout<<"flag="<<flag<<" cs="<<cs<<" num1="<<num1<<" num2="<<num2<<endl;
-            if(flag==1)
-                cout<<"Case "<<cas<<": Wrong password."<<endl;
-            else if(cs==0 && num1==1 && num2==0)
-            cout<<"Case "<<cas<<": Wrong password. Please, check your caps lock and num lock keys."<<endl;
-            else if(cs==0)
-                cout<<"Case "<<cas<<": Wrong password. Please, check your caps lock key."<<endl;
-            else
-                cout<<"Case "<<cas<<": Wrong password. Please, check your num lock key."<<endl;
-
-        }
-
-
-
-    }
-
+      }
+      printf("Case #%d: %.2lf\n",cas,mx);
+ }
     #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
     #endif
