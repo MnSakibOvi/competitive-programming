@@ -158,48 +158,65 @@ int main()
        freopen("out.txt","w",stdout);
 
    #endif
-    int n,m;
+      string str;
 
-    //t=1;
-    while(cin>>n>>m && n!=0 && m!=0)
+    vector<vector<char>> v;
+    while(cin>>str && str!="#")
     {
-        int dra[n];
-        int arm[m];
-        for(int i=0;i<n;i++)
+        if(str[0]!='e')
         {
-            cin>>dra[i];
-        }
-         for(int i=0;i<m;i++)
-        {
-            cin>>arm[i];
-        }
-        if(m<n)
-        {
-            cout<<"Loowater is doomed!"<<endl;
+            vector<char>vv;
+            char arr[5];
+            for(int i=0; i<str.size(); i++)
+            {
+                if(str[i]=='r')
+                    arr[0]=str[i+2];
+                else if(str[i]=='o')
+                    arr[1]=str[i+2];
+                else if(str[i]=='y')
+                    arr[2]=str[i+2];
+                else if(str[i]=='g')
+                    arr[3]=str[i+2];
+                else if(str[i]=='b')
+                    arr[4]=str[i+2];
+
+            }
+            for(int i=0; i<5; i++)
+            {
+                // cout<<arr[i]<<" ";
+                vv.push_back(arr[i]);
+            }
+            v.push_back(vv);
+
         }
         else
         {
-            sort(dra,dra+n);
-            sort(arm,arm+m);
-            int cnt=0,k=0,sum=0;
-            for(int i=0;i<m;i++)
+            int mx=INT_MIN,ans=0;
+            for (int i = 0; i < v.size(); i++)
             {
-                if(arm[i]>=dra[k])
+                int cnt=0;
+                for (int j = 0; j < v[i].size(); j++)
                 {
-                    cnt++;
-                    k++;
-                    sum+=arm[i];
+                    char c=v[i][j];
+                    for(int k=0; k<v.size(); k++)
+                    {
+                        if(c==v[k][j])
+                            cnt++;
+                    }
                 }
-           if(k==n)
-            break;
-            }
-            if(cnt==n)
-            {
-               cout<<sum<<endl;
-            }
-           else
-            cout<<"Loowater is doomed!"<<endl;
+                //cout<<cnt<<endl;
+                if(cnt>mx)
+                {
+                    mx=cnt;
+                    ans=i;
 
+                }
+
+
+
+            }
+            cout<<ans+1<<endl;
+ v.clear();
         }
     }
     #ifdef SAKIB_OVI
