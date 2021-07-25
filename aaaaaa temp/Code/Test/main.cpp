@@ -158,67 +158,61 @@ int main()
        freopen("out.txt","w",stdout);
 
    #endif
-      string str;
-
-    vector<vector<char>> v;
-    while(cin>>str && str!="#")
+       int t;
+    cin>>t;
+    while(t--)
     {
-        if(str[0]!='e')
-        {
-            vector<char>vv;
-            char arr[5];
-            for(int i=0; i<str.size(); i++)
-            {
-                if(str[i]=='r')
-                    arr[0]=str[i+2];
-                else if(str[i]=='o')
-                    arr[1]=str[i+2];
-                else if(str[i]=='y')
-                    arr[2]=str[i+2];
-                else if(str[i]=='g')
-                    arr[3]=str[i+2];
-                else if(str[i]=='b')
-                    arr[4]=str[i+2];
-
-            }
-            for(int i=0; i<5; i++)
-            {
-                // cout<<arr[i]<<" ";
-                vv.push_back(arr[i]);
-            }
-            v.push_back(vv);
-
-        }
-        else
-        {
-            int mx=INT_MIN,ans=0;
-            for (int i = 0; i < v.size(); i++)
-            {
-                int cnt=0;
-                for (int j = 0; j < v[i].size(); j++)
-                {
-                    char c=v[i][j];
-                    for(int k=0; k<v.size(); k++)
-                    {
-                        if(c==v[k][j])
-                            cnt++;
-                    }
-                }
-                //cout<<cnt<<endl;
-                if(cnt>mx)
-                {
-                    mx=cnt;
-                    ans=i;
-
-                }
+         string str,str2;
+         cin>>str>>str2;
+         int l=str.size();
+         int l2=str2.size();
+         if(l2>l)
+         {
 
 
+            swap(l,l2);
+            swap(str,str2);
+         }
+         if(l%l2==0)
+         {
+           int c=(l/l2);
+           string s="";
+           while(c--)
+           {
+               s+=str2;
+           }
+           if(str==s)
+            cout<<str<<endl;
+           else
+            cout<<"-1"<<endl;
 
-            }
-            cout<<ans+1<<endl;
- v.clear();
-        }
+         }
+         else
+         {
+             map<char,int>mp,mp2;
+             for(int i=0;i<str.size();i++)
+             {
+                 mp[str[i]]++;
+
+             }
+              for(int i=0;i<str2.size();i++)
+             {
+                 mp2[str2[i]]++;
+
+             }
+             if(mp.size()>1 || mp2.size()>1 || str[0] != str2[0])
+                cout<<"-1"<<endl;
+             else
+             {
+                 int g=l*l2;
+                 while(g--)
+                    cout<<str[0];
+                 cout<<endl;
+
+             }
+         }
     }
+
     #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
     #endif

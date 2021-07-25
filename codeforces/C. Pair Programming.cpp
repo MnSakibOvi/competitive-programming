@@ -10,56 +10,46 @@ int main()
     cin>>t;
     while(t--)
     {
-        int k,n,m;
+        int k,n,m,flag=0;
         cin>>k>>n>>m;
-        vector<int>v,v1;
+        vector<int>v,v1,v2;
         int zero=0,x;
         for(int i=0; i<n; i++)
         {
             cin>>x;
-            if(x==0)
-                zero++;
-            else
                 v.push_back(x);
         }
         for(int i=0; i<m; i++)
         {
             cin>>x;
-            if(x==0)
-                zero++;
-            else
-                v.push_back(x);
+
+                v1.push_back(x);
         }
-    sort(v.begin(), v.end());
-    int j=0,flag=0;
-    for(int i=0;i<v.size();i++)
-    {
-        if(v[i]<=k)
-          {
-              v1.push_back(v[i]);
-          }
-        else
+        int a=0,b=0;
+
+        for(int i=0; i<n+m; i++)
         {
-            if(zero>0)
+            if(a<v.size() && v[a]==0)
             {
-                int g=v[i]-k;
-                  //  cout<<v[i]<<" = g ="<<g;
-                if(g<=zero)
-                {
-                    while(g--)
-                    {
-                        v1.push_back(0);
-                        zero--;
-                    }
-                    v1.push_back(v[i]);
-                    k=v[i];
-                  //  cout<<"zero ="<<zero<<" k ="<<k<<endl;
-                }
-                else
-                {
-                    flag=1;
-                    break;
-                }
+                v2.push_back(0);
+                k++;
+                a++;
+            }
+            else  if(b<v1.size() && v1[b]==0)
+            {
+                v2.push_back(0);
+                k++;
+                b++;
+            }
+            else  if(a<v.size() && v[a]<=k)
+            {
+                v2.push_back(v[a]);
+                a++;
+            }
+            else  if(b<v1.size() && v1[b]<=k)
+            {
+                v2.push_back(v1[b]);
+                b++;
             }
             else
             {
@@ -67,29 +57,18 @@ int main()
                 break;
             }
         }
+//         for(int i=0; i<v2.size(); i++)
+//                cout<<v2[i]<<"- ";
+//            cout<<endl;
         if(flag==1)
-            break;
-
-
-
-    }
-    if(flag==1 || (v1.size()+zero)!=(n+m))
-        cout<<"-1"<<endl;
-    else
-    {
-
-        for(int i=0;i<v1.size();i++)
+            cout<<"-1"<<endl;
+        else
         {
-            cout<<v1[i]<<" ";
-
-        }
-        while(zero--)
-        {
-            cout<<"0 ";
+            for(int i=0; i<v2.size(); i++)
+                cout<<v2[i]<<" ";
+            cout<<endl;
         }
 
-        cout<<endl;
-    }
 
     }
     return 0;
