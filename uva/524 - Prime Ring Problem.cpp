@@ -3,22 +3,20 @@
 
 #include<bits/stdc++.h>
 using namespace std;
-int prime(int n)
-{
-    for(int i=2; i*i<=n; i++)
-    {
-        if(n%i==0)
-        {
-            return 1;
-        }
-    }
-    return 0;
-}
+
 
 int main()
 {
-    freopen("input.txt", "r", stdin);
-  freopen("output.txt", "w", stdout);
+    map<int,int>mp;
+    mp[2]=1;
+    mp[3]=1;
+    mp[5]=1;mp[7]=1;mp[11]=1;
+    mp[13]=1;mp[17]=1;mp[19]=1;
+    mp[23]=1;mp[29]=1;mp[31]=1;
+ //   freopen("input.txt", "r", stdin);
+ // freopen("output.txt", "w", stdout);
+
+
     int n,t=1;
 
    while( cin>>n && n!=0)
@@ -49,8 +47,8 @@ if(n%2==1 && n!=1)
             g=arr[0]+arr[n-1];
         }
 
-        int k=prime(g);
-        if(k==1)
+
+        if(mp[g]==0)
         {
             flag=1;
             break;
@@ -90,8 +88,7 @@ if(n%2==1 && n!=1)
                 g=arr[0]+arr[n-1];
             }
 
-            int k=prime(g);
-            if(k==1)
+          if(mp[g]==0)
             {
                 flag=1;
                 break;

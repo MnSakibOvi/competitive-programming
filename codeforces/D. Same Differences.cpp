@@ -1,4 +1,5 @@
 
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -144,46 +145,31 @@ int main()
 
     int t;
     sc1(t);
-    int gun=10;
+
     while(t--)
     {
-        int n,cnt=0;cin>>n;
-        if(n<10)
-            cout<<n<<endl;
-        else
-        {
-            string str=to_string(n);
-          int len=str.size()-1;
-           cnt=len*9;
-          len=str.size();
-          char c='1';
-         //  cout<<cnt<<"->";
-          while(true)
-          {
-              string s="";
-              for(int i=0;i<len;i++)
-              {
-                  s+=c;
-              }
-              if(s<=str)
-              {
-                  c++;
-                  cnt++;
+    long long int n,cnt=0;
+     cin>>n;
+     int a;
+     map<int,int>mp;
+     for(int i=0;i<n;i++)
+     {
+        cin>>a;
+        int g=a-i;
+        mp[g]++;
 
-              }
-              else
-              {
-                  break;
-              }
+     }
+  map<int, int>::iterator it;
 
+for (it = mp.begin(); it != mp.end(); it++)
+{
+  long long int g=  it->second ;
+    g--;
+    cnt+=g*(g+1)/2;
 
-
-          }
-           cout<<cnt<<endl;
-        }
-
+}
+cout<<cnt<<endl;
     }
-
 
 
 #ifdef run_time

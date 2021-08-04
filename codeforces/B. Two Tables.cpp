@@ -1,4 +1,7 @@
 
+
+
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -121,70 +124,77 @@ template <class T> inline T lcm(T a,T b)
 
 int dx[] = { 1,-1, 0, 0};                //graph moves
 int dy[] = { 0, 0, 1,-1};               //graph moves
-int check(int n)
-{
-    int g=n%10;
-    while(n!=0)
-    {
-       int k= n%10;
-       if(k!=g)
-        return 0;
 
-        n=n/10;
-    }
-    return 1;
-
-}
 
 int main()
 {
 #ifdef run_time
     clock_t tStart = clock();
 #endif
-
     int t;
-    sc1(t);
-    int gun=10;
+    cin>>t;
     while(t--)
     {
-        int n,cnt=0;cin>>n;
-        if(n<10)
-            cout<<n<<endl;
+        int w,h;
+        cin>>w>>h;
+        int x1,x2,y1,y2;;
+        cin>>x1>>y1>>x2>>y2;
+
+        int tw,th;
+        cin>>tw>>th;
+
+        int t1w=x2-x1;//table 1 wide
+        int t1h=y2-y1;//table 1 hight
+
+        //after table 1 inclued free spaces are=
+        int fw=w-t1w;
+        int fh=h-t1h;
+        //  cout<<fw<<" --- "<<fh<<endl;
+
+        //if free hight and wide two are less then secound table can't include table
+        if(fw<tw && fh<th)
+            cout<<"-1"<<endl;
         else
         {
-            string str=to_string(n);
-          int len=str.size()-1;
-           cnt=len*9;
-          len=str.size();
-          char c='1';
-         //  cout<<cnt<<"->";
-          while(true)
-          {
-              string s="";
-              for(int i=0;i<len;i++)
-              {
-                  s+=c;
-              }
-              if(s<=str)
-              {
-                  c++;
-                  cnt++;
-
-              }
-              else
-              {
-                  break;
-              }
+            double res=INT_MAX;
+            if(y1>=th || x1>=tw || w-x2>=tw || h-y2>=th )
+            {
+                cout<<"0.000000000"<<endl;
+            }
+            else
+            {
+                vector<int>v;;
+                int gap1=h-y2,gap2=w-x2;
 
 
+                if(fh>=th)
+                {
+                   v.push_back(th-y1);
+                    v.push_back(th-gap1);
 
-          }
-           cout<<cnt<<endl;
+                }
+                if(fw>=tw)
+                {
+                     v.push_back(tw-x1);
+                    v.push_back(tw-gap2);
+
+                }
+                for(int i=0;i<v.size();i++)
+                {
+                    if(v[i]<res)
+                        res=v[i];
+                }
+
+
+
+                printf("%.9lf\n",res);
+
+
+            }
+
         }
 
     }
-
-
 
 #ifdef run_time
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);

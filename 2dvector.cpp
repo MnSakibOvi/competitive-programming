@@ -1,5 +1,6 @@
 
 
+
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -9,12 +10,12 @@ void solve(int cas)
     cin>>n;
     int arr[n],arr2[n];
 
-    for(int i=0;i<n;i++)
+    for(int i=0; i<n; i++)
     {
         cin>>arr[i];
     }
 
-    for(int i=0;i<n;i++)
+    for(int i=0; i<n; i++)
     {
         cin>>arr2[i];
     }
@@ -23,7 +24,7 @@ void solve(int cas)
     sort(arr2,arr2+n);
     int cnt=0,k=0;
 
-    for(int i=0;i<n;i++)
+    for(int i=0; i<n; i++)
     {
         if(arr[i]>arr2[k])
         {
@@ -36,7 +37,7 @@ void solve(int cas)
 
 
             int l=k+1,cnt2=0;
-            for(int j=i+1;j<n;j++)
+            for(int j=i+1; j<n; j++)
             {
                 if(arr[j]>arr2[l])
                 {
@@ -44,8 +45,9 @@ void solve(int cas)
                     cnt2++;
                 }
             }
-             l=k;int cnt3=0;
-            for(int j=i+1;j<n;j++)
+            l=k;
+            int cnt3=0;
+            for(int j=i+1; j<n; j++)
             {
                 if(arr[j]>arr2[l])
                 {
@@ -54,11 +56,11 @@ void solve(int cas)
                 }
             }
 
-         // cout<<cnt2<<" "<<cnt3<<endl;
+            cout<<cnt2<<" "<<cnt3<<endl;
 
 
 
-            if(cnt2>=cnt3)
+            if(arr[i+1]>arr2[k+1])
             {
                 cnt++;
                 k++;
@@ -78,13 +80,33 @@ void solve(int cas)
 }
 int main()
 {
-    int t;
-    cin>>t;
-for(int i=1;i<=t;i++)
+    vector<vector<int>> vect ;
+
+    for(int i=0; i<3; i++)
     {
-        solve(i);
+        vector<int>v;
+        for(int j=0; j<3; j++)
+        {
+
+            int x;
+            cin>>x;
+            v.push_back(x);
+        }
+        vect.push_back(v);
+
+
     }
+    for(int i=0; i<3; i++)
+    {
+        for(int j=0; j<3; j++)
+        {
+
+           cout<<vect[i][j]<<" ";
+
+        }
+                  cout<<endl;
+
+    }
+
 }
-
-
 

@@ -1,4 +1,6 @@
 
+
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -126,9 +128,9 @@ int check(int n)
     int g=n%10;
     while(n!=0)
     {
-       int k= n%10;
-       if(k!=g)
-        return 0;
+        int k= n%10;
+        if(k!=g)
+            return 0;
 
         n=n/10;
     }
@@ -142,48 +144,115 @@ int main()
     clock_t tStart = clock();
 #endif
 
-    int t;
-    sc1(t);
-    int gun=10;
-    while(t--)
+ //  freopen("input.txt", "r", stdin);
+ //   freopen("output.txt", "w", stdout);
+  vector<vector<int>>v(69);
+  vector<vector<int>>v2(69);
+    string str="";
+    for(int i=0; i<10; i++)
     {
-        int n,cnt=0;cin>>n;
-        if(n<10)
-            cout<<n<<endl;
+        str+='0'+i;
+    }
+    //cout<<str<<endl;
+    string s1="",s2="";
+    for(int i=0; i<10; i++)
+    {
+        if(i<5)
+            s1+=str[i];
+        else
+            s2+=str[i];
+
+    }
+    stringstream geek(s1);
+    int a=0;
+    geek>>a;
+    stringstream geeek(s2);
+    int b=0;
+    geeek>>b;
+    int mn=min(a,b);
+    int mx=max(a,b);
+    //cout<<mn<<" "<<mx<<endl;
+    //if(mx%mn==0)
+      //  cout<<mx/mn<<endl;
+
+  //int mxx=INT_MIN;
+    while(next_permutation(str.begin(),str.end()))
+    {
+       // mn=0;mx=0;
+        s1="",s2="";
+    for(int i=0; i<10; i++)
+    {
+        if(i<5)
+            s1+=str[i];
+        else
+            s2+=str[i];
+
+    }
+    stringstream geek(s1);
+    int a=0;
+    geek>>a;
+    stringstream geeek(s2);
+    int b=0;
+    geeek>>b;
+    int mn=min(a,b);
+    int mx=max(a,b);
+
+    //cout<<mn<<" "<<mx<<endl;
+    if(mx%mn==0)
+       {
+         int g=mx/mn,flag=0;;
+
+         for(int i=0;i<v[g].size();i++)
+         {
+             if(v[g][i]==mx && v2[g][i]==mn)
+             {
+                 flag=1;
+                 break;
+             }
+         }
+         if(flag==0)
+         {
+             v[g].push_back(mx);
+             v2[g].push_back(mn);
+         }
+
+       }
+
+    }
+  int n,cnt=1;
+    while(cin>>n && n!=0)
+    {
+        if(cnt>1)
+            cout<<endl;
+        cnt++;
+        if(n>=69)
+            cout<<"There are no solutions for "<<n<<"."<<endl;
+        else if(v[n].size()==0)
+            cout<<"There are no solutions for "<<n<<"."<<endl;
         else
         {
-            string str=to_string(n);
-          int len=str.size()-1;
-           cnt=len*9;
-          len=str.size();
-          char c='1';
-         //  cout<<cnt<<"->";
-          while(true)
-          {
-              string s="";
-              for(int i=0;i<len;i++)
-              {
-                  s+=c;
-              }
-              if(s<=str)
-              {
-                  c++;
-                  cnt++;
+            for(int i=0;i<v[n].size();i++)
+            {
+                string res1=to_string(v[n][i]);
+                string res2=to_string(v2[n][i]);
+                if(res1.size()==4)
+                    cout<<"0"<<res1;
+                else
+                    cout<<res1;
 
-              }
-              else
-              {
-                  break;
-              }
+                cout<<" / ";
 
+                  if(res2.size()==4)
+                    cout<<"0"<<res2;
+                else
+                    cout<<res2;
 
+                    cout<<" = "<<n<<endl;
 
-          }
-           cout<<cnt<<endl;
+            }
         }
 
     }
-
 
 
 #ifdef run_time
