@@ -43,5 +43,5 @@ int   g=1;
     	solve();
     }
 }
-
+printf("the sum is =",a);
 

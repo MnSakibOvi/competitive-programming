@@ -25,53 +25,46 @@ void solve(int cas)
 
     for(int i=0;i<n;i++)
     {
-        if(arr[i]>arr2[k])
+        k=-1;
+        for(int j=0;j<n;j++)
         {
-            cnt++;
-            cnt++;
-            k++;
+            if(arr2[j]<arr[i] && arr2[j]!=-1)
+            {
+
+                k=j;
+            }
+            else if(arr2[j]>arr[i])
+                break;
         }
-        else if(arr[i]==arr2[k])
+        if(k!=-1)
         {
-
-
-            int l=k+1,cnt2=0;
-            for(int j=i+1;j<n;j++)
-            {
-                if(arr[j]>arr2[l])
-                {
-                    l++;
-                    cnt2++;
-                }
-            }
-             l=k;int cnt3=0;
-            for(int j=i+1;j<n;j++)
-            {
-                if(arr[j]>arr2[l])
-                {
-                    l++;
-                    cnt3++;
-                }
-            }
-
-         // cout<<cnt2<<" "<<cnt3<<endl;
-
-
-
-            if(cnt2>=cnt3)
-            {
-                cnt++;
-                k++;
-            }
-            else
-            {
-                cnt++;
-                cnt++;
-                i++;
-                k++;
-            }
+            cnt+=2;
+          //  cout<<arr[i]<<" ->"<<arr2[k]<<endl;
+            arr[i]=-1;
+            arr2[k]=-1;
         }
     }
+   // cout<<cnt<<endl;
+    for(int i=0;i<n;i++)
+    {
+        k=-1;
+        if(arr[i]!=-1)
+        {
+
+
+        for(int j=0;j<n;j++)
+        {
+            if(arr[i]==arr2[j])
+            {
+                cnt++;
+                arr2[j]=-1;
+            break;
+            }
+        }
+        }
+
+    }
+
 
     cout<<cnt<<endl;
 

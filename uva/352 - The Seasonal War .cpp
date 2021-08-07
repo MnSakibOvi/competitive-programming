@@ -125,26 +125,38 @@ template <class T> inline T lcm(T a,T b)
 
 int dx[] = { 1,-1, 0, 0};                //graph moves
 int dy[] = { 0, 0, 1,-1};               //graph moves
-//________________________________________________________________________________________________________
+
+
+vector<string>v;
 int n;
-int cnt=0;
-vector<int>g[27];
-bool tra[27];
-void dfs(int v){
-    if(tra[v]==true)
-        return;
-    tra[v]=true;
-    for(int i=0;i<g[v].size();i++)
+void change(int a,int b)
+{
+    if(v[a][b]=='1')
+
     {
-        if(!tra[g[v][i]])
-        {
-            dfs(g[v][i]);
-        }
+        // cout<<a<<" "<<b<<endl;
+        v[a][b]='0';
+        if(a!=0 && b!=0)
+            change(a-1,b-1);
+        if(b!=0)
+            change(a,b-1);
+        if(a!=n-1 && b!=0)
+            change(a+1,b-1);
+        if(a!=0 )
+            change(a-1,b);
+        if(a!=n-1 )
+            change(a+1,b);
+        if(a!=n-1 && b!=n-1)
+            change(a+1,b+1);
+        if(a!=0 && b!=n-1)
+            change(a-1,b+1);
+        if( b!=n-1)
+        change(a,b+1);
     }
-
-
-
+    else
+        return;
 }
+
 int main()
 {
 #ifdef SAKIB_OVI
@@ -153,52 +165,31 @@ int main()
     freopen("out.txt","w",stdout);
 
 #endif
-int t;
-cin>>t;
-while(t--)
-{
 
-  for(int i=1;i<27;i++){
-        tra[i]=false;
-        g[i].clear();
-  }
-
-    char c;
-    cin>>c;
-    n=c-64;
-   // n=n-64;
-   // cout<<n<<endl;
+    cin>>n;
     string str;
-
-    cin.ignore();
-    while(getline(cin,str))
+    for(int i=0; i<n; i++ )
     {
-        if(str.size()==0)
-            break;
-        else
-        {
-            int p=str[0]-64;
-            int q=str[1]-64;
-            //cout<<p<<" "<<q<<endl;
-            g[p].push_back(q);
-             g[q].push_back(p);
-
-        }
+        cin>>str;
+        v.push_back(str);
     }
     int cnt=0;
-    for(int i=1;i<=n;i++)
+    for(int i=0; i<n; i++ )
     {
-       if(!tra[i])
-       {
-        cnt++;
-        dfs(i);
-       }
-    }
+        for(int j=0; j<n; j++)
+        {
+            if(v[i][j]=='1')
+            {
+                change(i,j);
+                cnt++;
 
-cout<<cnt<<endl;
-if(t>0)
-cout<<endl;
-}
+            }
+
+        }
+
+
+    }
+    cout<<cnt<<endl;
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif

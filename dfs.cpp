@@ -1,0 +1,401 @@
+//
+//
+//#include <bits/stdc++.h>
+//// #include <iostream>
+//// #include <cstdio>
+//// #include <cstdlib>
+//// #include <algorithm>
+//// #include <cmath>
+//// #include <vector>
+//// #include <set>
+//// #include <map>
+//// #include <queue>
+//// #include <stack>
+//// #include <ctime>
+//// #include <cassert>
+//// #include <complex>
+//// #include <string>
+//// #include <cstring>4 6
+//
+//
+//// #include <bitset>
+//using namespace std;
+//
+//// #pragma GCC optimize("Ofast,no-stack-protector")
+//// #pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
+//// #pragma GCC optimize("unroll-loops")
+//
+//#define ll              long long int
+//#define vi              vector< int >
+//#define vll             vector< ll >
+//
+//#define sc              scanf
+//#define pf              printf
+//#define cspf(i)         pf("Case #%d: ", i)
+//#define spc             pf(" ")
+//#define line            pf("\n");
+//#define yes             cout<<"YES"<<endl
+//#define no             cout<<"NO"<<endl
+//#define dib(x)         printf("x = %d,",x)
+//
+////------------------------------------
+//#define ff              first
+//#define ss              second
+//#define mp              make_pair
+//#define pb              push_back
+//#define ppb             pop_back
+//#define tp(v,j)         get<j>(v)
+//#define Log(b,x)        (log(x)/log(b))
+//
+//#define FOR(i,x,y)      for(int i = int(x); i < int(y); i++)
+//#define ROF(i,x,y)      for(int i = int(x)-1; i >= int(y); i--)
+//#define clr(arr,x)      memset(arr, x, sizeof arr)
+//#define vout(v,sz)      for(int w=0;w<sz;w++){if(w) spc; cout<<v[w];}
+//#define all(v)          v.begin(), v.end()
+//#define rall(v)         v.rbegin(), v.rend()
+//#define unq(v)          sort(all(v)),(v).resize(unique(all(v))-v.begin())
+//#define fastIO          ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr)
+//
+//#define sc1(x)          sc("%d",&x);
+//#define sc2(x,y)        sc("%d %d", &x, &y)
+//#define sc3(x,y,z)      sc("%d %d %d", &x, &y, &z)
+//#define scl1(x)         sc("%lld",&x);
+//#define scl2(x,y)       sc("%lld %lld", &x, &y)
+//#define scf1(x)         sc("%lf",&x);
+//#define scf2(x,y)       sc("%lf %lf", &x, &y)
+//
+//#define pf1(x)          pf("%d",x);
+//#define pf2(x,y)        pf("%d %d", x, y)
+//#define pfl1(x)         pf("%lld",x);
+//#define pfl2(x,y)       pf("%lld %lld", x, y)
+//#define file              freopen("input.txt", "r", stdin);freopen("output.txt", "w", stdout);
+//
+//#define MOD             (int)(998244353)
+//#define MaxN            100005
+//#define inf             0x3f3f3f3f
+//#define PI              acos(-1.0)  // 3.1415926535897932
+//#define eps             1e-6
+//
+////#define run_time
+//
+//
+//#ifdef run_time
+//#define debug(...) __f(#__VA_ARGS__, __VA_ARGS__)
+//template < typename Arg1 >
+//void __f(const char* name, Arg1&& arg1)
+//{
+//    cout << name << " = " << arg1 << std::endl;
+//}
+//template < typename Arg1, typename... Args>
+//void __f(const char* names, Arg1&& arg1, Args&&... args)
+//{
+//    const char* comma = strchr(names, ',');
+//    cout.write(names, comma - names) << " = " << arg1 <<" | ";
+//    __f(comma+1, args...);
+//}
+//#else
+//#define debug(...)
+//#endif
+//
+//template <class T> inline T bigMod(T p,T e,T M)
+//{
+//    T ret=1;
+//    for(; e>0; e>>=1)
+//    {
+//        if(e&1) ret=(ret*p)%M;
+//        p=(p*p)%M;
+//    }
+//    return (T)ret;
+//}
+//template <class T> inline T modInverse(T a,T M)
+//{
+//    return bigMod(a,M-2,M);
+//}
+//template <class T> inline T gcd(T a,T b)
+//{
+//    if(b==0)return a;
+//    return gcd(b,a%b);
+//}
+//template <class T> inline T lcm(T a,T b)
+//{
+//    a=abs(a);
+//    b=abs(b);
+//    return (a/gcd(a,b))*b;
+//}
+//
+//int dx[] = { 1,-1, 0, 0};                //graph moves
+//int dy[] = { 0, 0, 1,-1};               //graph moves
+//
+//
+//vector<int>G[MaxN];
+//bool visited[MaxN];//globaly tai memset not necessary
+//bool can_visit;
+//void visit_all_connection(int u,int z)
+//{
+//   // cout<<u<<endl;fflush(stdout);
+//
+//    if(u==z)
+//        can_visit=true;
+//        if(can_visit)
+//            return;
+//    visited[u]=true;
+//     for(int &v:G[u])
+//     {
+//        if(visited[v])continue;
+//        visit_all_connection(v,z);
+//
+//     }
+//}
+//int main()
+//{
+//  #ifdef SAKIB_OVI
+//       clock_t tStart = clock();
+//       freopen("input.txt","r",stdin);
+//       freopen("out.txt","w",stdout);
+//
+//   #endif
+//       can_visit=false;
+//  int n,m,das;
+//  cin>>n>>m;
+//  while(m--)
+//  {
+//    int u,v;
+//     cin>>u>>v;
+//     G[u].push_back(v);
+//     G[v].push_back(u);
+// }
+// int point,des;
+// cin>>point>>des;
+////graph connected or not.
+//     int ans=0;
+// /*    for(int i=1;i<=n;i++)
+//     {
+//        if(!visited[i])//visited[i]==false
+//        {
+//            ans++;
+//            visit_all_connection(i);
+//
+//        }
+//
+//     }*/
+//
+//   visit_all_connection(point,des);
+//     cout<<ans<<endl;
+//     if(can_visit)
+//        cout<<"YES"<<endl;
+//    else
+//        cout<<"NO"<<endl;
+//
+//
+//    #ifdef SAKIB_OVI
+//    fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
+//    #endif
+//       return 0;
+//      }
+//
+//
+
+///how many point aare connected
+#include <bits/stdc++.h>
+// #include <iostream>
+// #include <cstdio>
+// #include <cstdlib>
+// #include <algorithm>
+// #include <cmath>
+// #include <vector>
+// #include <set>
+// #include <map>
+// #include <queue>
+// #include <stack>
+// #include <ctime>
+// #include <cassert>
+// #include <complex>
+// #include <string>
+// #include <cstring>4 6
+
+
+// #include <bitset>
+using namespace std;
+
+// #pragma GCC optimize("Ofast,no-stack-protector")
+// #pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
+// #pragma GCC optimize("unroll-loops")
+
+#define ll              long long int
+#define vi              vector< int >
+#define vll             vector< ll >
+
+#define sc              scanf
+#define pf              printf
+#define cspf(i)         pf("Case #%d: ", i)
+#define spc             pf(" ")
+#define line            pf("\n");
+#define yes             cout<<"YES"<<endl
+#define no             cout<<"NO"<<endl
+#define dib(x)         printf("x = %d,",x)
+
+//------------------------------------
+#define ff              first
+#define ss              second
+#define mp              make_pair
+#define pb              push_back
+#define ppb             pop_back
+#define tp(v,j)         get<j>(v)
+#define Log(b,x)        (log(x)/log(b))
+
+#define FOR(i,x,y)      for(int i = int(x); i < int(y); i++)
+#define ROF(i,x,y)      for(int i = int(x)-1; i >= int(y); i--)
+#define clr(arr,x)      memset(arr, x, sizeof arr)
+#define vout(v,sz)      for(int w=0;w<sz;w++){if(w) spc; cout<<v[w];}
+#define all(v)          v.begin(), v.end()
+#define rall(v)         v.rbegin(), v.rend()
+#define unq(v)          sort(all(v)),(v).resize(unique(all(v))-v.begin())
+#define fastIO          ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr)
+
+#define sc1(x)          sc("%d",&x);
+#define sc2(x,y)        sc("%d %d", &x, &y)
+#define sc3(x,y,z)      sc("%d %d %d", &x, &y, &z)
+#define scl1(x)         sc("%lld",&x);
+#define scl2(x,y)       sc("%lld %lld", &x, &y)
+#define scf1(x)         sc("%lf",&x);
+#define scf2(x,y)       sc("%lf %lf", &x, &y)
+
+#define pf1(x)          pf("%d",x);
+#define pf2(x,y)        pf("%d %d", x, y)
+#define pfl1(x)         pf("%lld",x);
+#define pfl2(x,y)       pf("%lld %lld", x, y)
+#define file              freopen("input.txt", "r", stdin);freopen("output.txt", "w", stdout);
+
+#define MOD             (int)(998244353)
+#define MaxN            100005
+#define inf             0x3f3f3f3f
+#define PI              acos(-1.0)  // 3.1415926535897932
+#define eps             1e-6
+
+//#define run_time
+
+
+#ifdef run_time
+#define debug(...) __f(#__VA_ARGS__, __VA_ARGS__)
+template < typename Arg1 >
+void __f(const char* name, Arg1&& arg1)
+{
+    cout << name << " = " << arg1 << std::endl;
+}
+template < typename Arg1, typename... Args>
+void __f(const char* names, Arg1&& arg1, Args&&... args)
+{
+    const char* comma = strchr(names, ',');
+    cout.write(names, comma - names) << " = " << arg1 <<" | ";
+    __f(comma+1, args...);
+}
+#else
+#define debug(...)
+#endif
+
+template <class T> inline T bigMod(T p,T e,T M)
+{
+    T ret=1;
+    for(; e>0; e>>=1)
+    {
+        if(e&1) ret=(ret*p)%M;
+        p=(p*p)%M;
+    }
+    return (T)ret;
+}
+template <class T> inline T modInverse(T a,T M)
+{
+    return bigMod(a,M-2,M);
+}
+template <class T> inline T gcd(T a,T b)
+{
+    if(b==0)return a;
+    return gcd(b,a%b);
+}
+template <class T> inline T lcm(T a,T b)
+{
+    a=abs(a);
+    b=abs(b);
+    return (a/gcd(a,b))*b;
+}
+
+int dx[] = { 1,-1, 0, 0};                //graph moves
+int dy[] = { 0, 0, 1,-1};               //graph moves
+
+int n;
+
+
+    vector<int>g[101];
+    bool flag[101];
+    int cnt;
+void dfs(int a)
+{
+    for(int i=0;i<g[a].size();i++)
+    {
+        int c=g[a][i];
+        if(!flag[c])
+        {
+            flag[c]=true;
+            cnt--;
+            dfs(c);
+        }
+    }
+
+}
+int main()
+{
+#ifdef SAKIB_OVI
+    clock_t tStart = clock();
+    freopen("input.txt","r",stdin);
+    freopen("out.txt","w",stdout);
+
+#endif
+
+while(cin>>n && n!=0)
+{
+    for(int i=1;i<=n;i++)
+        g[i].clear();
+
+//cout<<n<<endl;
+
+int node;
+while(cin>>node && node !=0)
+{
+    //cout<<"no"<<node<<endl;
+    int point;
+    while(cin>>point && point !=0)
+    {
+         //cout<<point<<endl;
+        g[node].push_back(point);
+    }
+
+}
+
+int m;
+cin>>m;
+while(m--)
+{
+    int a;
+    cin>>a;
+    memset(flag,false,sizeof(flag));
+    cnt=n;
+    dfs(a);
+    cout<<cnt;
+    for(int i=1;i<=n;i++)
+    {
+        if(!flag[i])
+            cout<<" "<<i;
+
+    }
+    cout<<endl;
+}
+
+
+
+}
+#ifdef SAKIB_OVI
+    fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
+#endif
+    return 0;
+}
+

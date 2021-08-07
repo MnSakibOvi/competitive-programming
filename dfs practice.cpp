@@ -1,5 +1,6 @@
 
 
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -125,83 +126,72 @@ template <class T> inline T lcm(T a,T b)
 
 int dx[] = { 1,-1, 0, 0};                //graph moves
 int dy[] = { 0, 0, 1,-1};               //graph moves
-//________________________________________________________________________________________________________
-int n;
-int cnt=0;
-vector<int>g[27];
-bool tra[27];
-void dfs(int v){
-    if(tra[v]==true)
-        return;
-    tra[v]=true;
-    for(int i=0;i<g[v].size();i++)
+
+
+vector<int>G[MaxN];
+bool visited[MaxN];//globaly tai memset not necessary
+//bool can_visit;
+int point;
+void dfs(int v)
+{
+    visited[v]=true;
+    if(visited[point]==true)
     {
-        if(!tra[g[v][i]])
-        {
-            dfs(g[v][i]);
-        }
+        cout<<"yes"<<endl;
+        return;
     }
-
-
+     if(visited[point]==true)
+    {
+        return;
+    }
+    for(int i=0;i<G[v].size();i++)
+    {
+        int g=G[v][i];
+        if(!visited[g])
+        dfs( g);
+        else
+            continue;
+    }
 
 }
 int main()
 {
-#ifdef SAKIB_OVI
-    clock_t tStart = clock();
-    freopen("input.txt","r",stdin);
-    freopen("out.txt","w",stdout);
+  #ifdef SAKIB_OVI
+       clock_t tStart = clock();
+       freopen("input.txt","r",stdin);
+       freopen("out.txt","w",stdout);
 
-#endif
-int t;
-cin>>t;
-while(t--)
-{
-
-  for(int i=1;i<27;i++){
-        tra[i]=false;
-        g[i].clear();
+   #endif
+      // can_visit=false;
+  int n,m,das;
+  cin>>n>>m;
+  while(m--)
+  {
+    int u,v;
+     cin>>u>>v;
+     G[u].push_back(v);
+     G[v].push_back(u);
   }
+//  int cnt=0;
+//  for(int i=1;i<=n;i++)
+//  {
+//      if(!visited[i])
+//      {
+//          dfs(i);
+//          cnt++;
+//      }
+//  }
+int des;
+cin>>des>>point;
+dfs(des);
 
-    char c;
-    cin>>c;
-    n=c-64;
-   // n=n-64;
-   // cout<<n<<endl;
-    string str;
 
-    cin.ignore();
-    while(getline(cin,str))
-    {
-        if(str.size()==0)
-            break;
-        else
-        {
-            int p=str[0]-64;
-            int q=str[1]-64;
-            //cout<<p<<" "<<q<<endl;
-            g[p].push_back(q);
-             g[q].push_back(p);
 
-        }
-    }
-    int cnt=0;
-    for(int i=1;i<=n;i++)
-    {
-       if(!tra[i])
-       {
-        cnt++;
-        dfs(i);
-       }
-    }
 
-cout<<cnt<<endl;
-if(t>0)
-cout<<endl;
-}
-#ifdef SAKIB_OVI
+    #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
-#endif
-    return 0;
-}
+    #endif
+       return 0;
+      }
+
 

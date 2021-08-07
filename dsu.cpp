@@ -1,5 +1,6 @@
 
 
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -125,26 +126,32 @@ template <class T> inline T lcm(T a,T b)
 
 int dx[] = { 1,-1, 0, 0};                //graph moves
 int dy[] = { 0, 0, 1,-1};               //graph moves
-//________________________________________________________________________________________________________
+
 int n;
-int cnt=0;
-vector<int>g[27];
-bool tra[27];
-void dfs(int v){
-    if(tra[v]==true)
-        return;
-    tra[v]=true;
-    for(int i=0;i<g[v].size();i++)
-    {
-        if(!tra[g[v][i]])
-        {
-            dfs(g[v][i]);
-        }
-    }
+int par[MaxN];
+int sz[MaxN];
+int findPar(int v){
+    if(par[v]==v) return v;//base
+   return par[v]=findPar(par[v]);//recursion plus saving
+}
+void join(int p,int q){
+   //if(sz[q]<sz[p]) swap(p,q);
+
+   if(sz[q]>=sz[p])
+   {
+     par[p]=q;//q is the new parant
+    sz[q]+=sz[p];
+   }
+   else
+   {
+   par[q]=p;//q is the new parant
+   sz[p]+=sz[q];
+   }
 
 
 
 }
+
 int main()
 {
 #ifdef SAKIB_OVI
@@ -153,52 +160,35 @@ int main()
     freopen("out.txt","w",stdout);
 
 #endif
-int t;
-cin>>t;
-while(t--)
-{
 
-  for(int i=1;i<27;i++){
-        tra[i]=false;
-        g[i].clear();
-  }
+int n,q;
+cin>>n>>q;
+int ans=n;
+for(int i=1;i<=n;i++)par[i]=i,sz[i]=1;
+    while(q--){
+    int tp;
+    cin>>tp;
+        if(tp==1){
+            int v,u;
+            cin>>u>>v;
+            //p=find_parent of U
+            int p=findPar(u);
+            //q=find parent of v
+            int q=findPar(v);
 
-    char c;
-    cin>>c;
-    n=c-64;
-   // n=n-64;
-   // cout<<n<<endl;
-    string str;
 
-    cin.ignore();
-    while(getline(cin,str))
-    {
-        if(str.size()==0)
-            break;
-        else
-        {
-            int p=str[0]-64;
-            int q=str[1]-64;
-            //cout<<p<<" "<<q<<endl;
-            g[p].push_back(q);
-             g[q].push_back(p);
-
+            //if(p!=q)//connect them and ans--;
+            if(p!=q)
+            {
+               join(p,q);
+               ans--;
+            }
+        }
+        else{
+            cout<<ans<<endl;
         }
     }
-    int cnt=0;
-    for(int i=1;i<=n;i++)
-    {
-       if(!tra[i])
-       {
-        cnt++;
-        dfs(i);
-       }
-    }
 
-cout<<cnt<<endl;
-if(t>0)
-cout<<endl;
-}
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif

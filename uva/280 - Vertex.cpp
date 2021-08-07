@@ -1,5 +1,3 @@
-
-
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -125,24 +123,25 @@ template <class T> inline T lcm(T a,T b)
 
 int dx[] = { 1,-1, 0, 0};                //graph moves
 int dy[] = { 0, 0, 1,-1};               //graph moves
-//________________________________________________________________________________________________________
+
 int n;
-int cnt=0;
-vector<int>g[27];
-bool tra[27];
-void dfs(int v){
-    if(tra[v]==true)
-        return;
-    tra[v]=true;
-    for(int i=0;i<g[v].size();i++)
+
+
+    vector<int>g[101];
+    bool flag[101];
+    int cnt;
+void dfs(int a)
+{
+    for(int i=0;i<g[a].size();i++)
     {
-        if(!tra[g[v][i]])
+        int c=g[a][i];
+        if(!flag[c])
         {
-            dfs(g[v][i]);
+            flag[c]=true;
+            cnt--;
+            dfs(c);
         }
     }
-
-
 
 }
 int main()
@@ -153,55 +152,51 @@ int main()
     freopen("out.txt","w",stdout);
 
 #endif
-int t;
-cin>>t;
-while(t--)
+
+while(cin>>n && n!=0)
 {
-
-  for(int i=1;i<27;i++){
-        tra[i]=false;
+    for(int i=1;i<=n;i++)
         g[i].clear();
-  }
 
-    char c;
-    cin>>c;
-    n=c-64;
-   // n=n-64;
-   // cout<<n<<endl;
-    string str;
+//cout<<n<<endl;
 
-    cin.ignore();
-    while(getline(cin,str))
+int node;
+while(cin>>node && node !=0)
+{
+    //cout<<"no"<<node<<endl;
+    int point;
+    while(cin>>point && point !=0)
     {
-        if(str.size()==0)
-            break;
-        else
-        {
-            int p=str[0]-64;
-            int q=str[1]-64;
-            //cout<<p<<" "<<q<<endl;
-            g[p].push_back(q);
-             g[q].push_back(p);
-
-        }
+         //cout<<point<<endl;
+        g[node].push_back(point);
     }
-    int cnt=0;
+
+}
+
+int m;
+cin>>m;
+while(m--)
+{
+    int a;
+    cin>>a;
+    memset(flag,false,sizeof(flag));
+    cnt=n;
+    dfs(a);
+    cout<<cnt;
     for(int i=1;i<=n;i++)
     {
-       if(!tra[i])
-       {
-        cnt++;
-        dfs(i);
-       }
-    }
+        if(!flag[i])
+            cout<<" "<<i;
 
-cout<<cnt<<endl;
-if(t>0)
-cout<<endl;
+    }
+    cout<<endl;
+}
+
+
+
 }
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif
     return 0;
 }
-

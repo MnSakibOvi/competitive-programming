@@ -1,5 +1,3 @@
-
-
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -125,26 +123,10 @@ template <class T> inline T lcm(T a,T b)
 
 int dx[] = { 1,-1, 0, 0};                //graph moves
 int dy[] = { 0, 0, 1,-1};               //graph moves
-//________________________________________________________________________________________________________
+
 int n;
-int cnt=0;
-vector<int>g[27];
-bool tra[27];
-void dfs(int v){
-    if(tra[v]==true)
-        return;
-    tra[v]=true;
-    for(int i=0;i<g[v].size();i++)
-    {
-        if(!tra[g[v][i]])
-        {
-            dfs(g[v][i]);
-        }
-    }
 
 
-
-}
 int main()
 {
 #ifdef SAKIB_OVI
@@ -153,55 +135,27 @@ int main()
     freopen("out.txt","w",stdout);
 
 #endif
-int t;
-cin>>t;
-while(t--)
+int n;
+cin>>n;
+int arr[n*2];
+n=n*2;
+for(int i=0;i<n;i++)
 {
 
-  for(int i=1;i<27;i++){
-        tra[i]=false;
-        g[i].clear();
-  }
+    cin>>arr[i];
 
-    char c;
-    cin>>c;
-    n=c-64;
-   // n=n-64;
-   // cout<<n<<endl;
-    string str;
-
-    cin.ignore();
-    while(getline(cin,str))
-    {
-        if(str.size()==0)
-            break;
-        else
-        {
-            int p=str[0]-64;
-            int q=str[1]-64;
-            //cout<<p<<" "<<q<<endl;
-            g[p].push_back(q);
-             g[q].push_back(p);
-
-        }
-    }
-    int cnt=0;
-    for(int i=1;i<=n;i++)
-    {
-       if(!tra[i])
-       {
-        cnt++;
-        dfs(i);
-       }
-    }
-
-cout<<cnt<<endl;
-if(t>0)
-cout<<endl;
 }
+sort(arr,arr+n);
+int d=0,t=n-1;
+while(d<t)
+{
+    cout<<arr[d]<<" "<<arr[t]<<" ";
+    d++;
+    t--;
+}
+cout<<endl;
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif
     return 0;
 }
-

@@ -125,23 +125,35 @@ template <class T> inline T lcm(T a,T b)
 
 int dx[] = { 1,-1, 0, 0};                //graph moves
 int dy[] = { 0, 0, 1,-1};               //graph moves
-//________________________________________________________________________________________________________
-int n;
 int cnt=0;
-vector<int>g[27];
-bool tra[27];
-void dfs(int v){
-    if(tra[v]==true)
-        return;
-    tra[v]=true;
-    for(int i=0;i<g[v].size();i++)
-    {
-        if(!tra[g[v][i]])
-        {
-            dfs(g[v][i]);
-        }
-    }
+vector<string>g;
+void dfs(int a,int b){
+    int n=g.size();
+    int m=g[0].size();
+    if(g[a][b]=='1'){
+        cnt++;
+        //cout<<cnt<<endl;
+        g[a][b]='0';
 
+        if(a!=0 && b!=0)
+            dfs(a-1,b-1);
+        if(b!=0)
+            dfs(a,b-1);
+        if(a!=n-1 && b!=0)
+            dfs(a+1,b-1);
+        if(a!=0 )
+            dfs(a-1,b);
+        if(a!=n-1 )
+            dfs(a+1,b);
+        if(a!=n-1 && b!=m-1)
+            dfs(a+1,b+1);
+        if(a!=0 && b!=m-1)
+            dfs(a-1,b+1);
+        if( b!=m-1)
+        dfs(a,b+1);
+    }
+    else
+        return ;
 
 
 }
@@ -155,50 +167,48 @@ int main()
 #endif
 int t;
 cin>>t;
+string str;
+cin.ignore();
+getline(cin,str);
 while(t--)
 {
+    g.clear();
 
-  for(int i=1;i<27;i++){
-        tra[i]=false;
-        g[i].clear();
-  }
+   int mx=0;
+    while(getline(cin,str)){
 
-    char c;
-    cin>>c;
-    n=c-64;
-   // n=n-64;
-   // cout<<n<<endl;
-    string str;
-
-    cin.ignore();
-    while(getline(cin,str))
-    {
         if(str.size()==0)
             break;
-        else
+        else{
+        g.push_back(str);
+        }
+
+    }
+    for(int i=0;i<g.size();i++)
         {
-            int p=str[0]-64;
-            int q=str[1]-64;
-            //cout<<p<<" "<<q<<endl;
-            g[p].push_back(q);
-             g[q].push_back(p);
+          for(int j=0;j<g[i].size();j++)
+          {
+            //cout<<g[i][j]<<" ";
+            if(g[i][j]=='1')
+            {
+              //  cout<<cnt<<endl;
+                cnt=0;
+                dfs(i,j);
+
+               //cout<<cnt<<endl;
+                mx=max(cnt,mx);
+
+            }
+          }
+        //  cout<<endl;
 
         }
-    }
-    int cnt=0;
-    for(int i=1;i<=n;i++)
-    {
-       if(!tra[i])
-       {
-        cnt++;
-        dfs(i);
-       }
-    }
 
-cout<<cnt<<endl;
-if(t>0)
-cout<<endl;
+  cout<<mx<<endl;
+  if(t>0)
+    cout<<endl;
 }
+
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif

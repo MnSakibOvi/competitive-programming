@@ -6,92 +6,71 @@ using namespace std;
 
 void solve()
 {
-string str,str2;
-cin>>str>>str2;
-for(int i=0;i<str.size();i++)
-{
-    if(str[i]==str2[0])
+    string str,str2;
+    cin>>str>>str2;
+    int k=0,g;
+    for(int i=0; i<str.size(); i++)
     {
-        int a=1,k=i,fl=0,n=str2.size()-1;
-        while(n--)
+        if(str[i]==str2[k])
         {
-
-
-                if(str[k+1]==str2[a] && fl==0 && k<str.size()-1)
+            k++;
+             g=k;
+             cout<<"k="<<k<<"->";
+            for(int j=i-1;j>=0;j--)
+            {
+                cout<<j<<" ";
+                if(str[j]==str2[k])
                 {
+                    cout<<str[j]<<" "<<str2[k]<<endl;
                     k++;
-                    a++;
-                }
-                else if(str[k-1]==str2[a] && k>0)
-                {
-                    k--;
-                    a++;
-                    fl=1;
-
                 }
                 else
                 {
+                    k=g;
                     break;
                 }
 
-
-          ///  cout<<a<<endl;
-            if(a==str2.size())
+                if(k==str2.size())
                 {
                     cout<<"YES"<<endl;
                     return;
                 }
 
-
+            }
+            cout<<endl;
+             if(k==str2.size())
+                {
+                    cout<<"YES"<<endl;
+                    return;
+                }
         }
-        if(a==str2.size())///for 1
-                {
-                    cout<<"YES"<<endl;
-                    return;
-                }
+        else
+        {
+            k=0;
+        }
 
-
-        int kk=i,j=1;
-       for(int gg=i-1;gg>=0;gg--)
-       {
-
-           if(str[gg]==str2[j])
-           {
-               j++;
-
-           }
-           else
-            break;
-
-
-            if(j==str2.size())
-           {
-               cout<<"YES"<<endl;
-                    return;
-
-           }
-       }
 
     }
 
-
-
+    cout<<"NO"<<endl;
+    return;
 }
 
-cout<<"NO"<<endl;
-                    return;
-}
+////////////////////1
+////////////////////baaaa
+////////////////////aab
 int main()
 {
 
 
     int t;
-   cin>>t;
- //  t=1;
+    cin>>t;
+//  t=1;
     while(t--)
     {
-    	solve();
+        solve();
     }
 }
+
 
 
