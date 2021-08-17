@@ -1,5 +1,6 @@
 
 
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -126,24 +127,26 @@ template <class T> inline T lcm(T a,T b)
 int dx[] = { 1,-1, 0, 0};                //graph moves
 int dy[] = { 0, 0, 1,-1};               //graph moves
 //________________________________________________________________________________________________________
+ int par[50005];
+ int sz[50005];
+
 int n;
-int cnt=0;
-vector<int>g[27];
-bool tra[27];
-void dfs(int v){
-    if(tra[v]==true)
-        return;
-    tra[v]=true;
-    for(int i=0;i<g[v].size();i++)
+int find_parant(int v)
+{
+    if(par[v]==v)return v;
+    else
+    return par[v]=find_parant(par[v]);
+}
+void join(int p,int q){
+    if(sz[p]>=sz[q])
     {
-        if(!tra[g[v][i]])
-        {
-            dfs(g[v][i]);
-        }
+        par[q]=p;
+        sz[p]+=sz[q];
+    }else{
+
+        par[p]=q;
+        sz[q]+=sz[p];
     }
-
-
-
 }
 int main()
 {
@@ -153,55 +156,31 @@ int main()
     freopen("out.txt","w",stdout);
 
 #endif
-int t;
-cin>>t;
-while(t--)
-{
-
-  for(int i=1;i<27;i++){
-        tra[i]=false;
-        g[i].clear();
-  }
-
-    char c;
-    cin>>c;
-    n=c-64;
-   // n=n-64;
-   // cout<<n<<endl;
-    string str;
-
-    cin.ignore();
-    while(getline(cin,str))
+ int t;
+ cin>>t;
+ while(t--){
+   int n;
+   cin>>n;
+   int arr[n];
+   for(int i=0;i<n;i++)cin>>arr[i];
+    int cnt=0,mn=arr[n-1];
+    for(int i=n-1;i>=0;i--)
     {
-        if(str.size()==0)
-            break;
-        else
-        {
-            int p=str[0]-64;
-            int q=str[1]-64;
-            //cout<<p<<" "<<q<<endl;
-            g[p].push_back(q);
-             g[q].push_back(p);
-
+        if(arr[i]>mn)
+            cnt++;
+        else{
+            mn=arr[i];
         }
-    }
-    int cnt=0;
-    for(int i=1;i<=n;i++)
-    {
-       if(!tra[i])
-       {
-        cnt++;
-        dfs(i);
-       }
-    }
 
-cout<<cnt<<endl;
-if(t>0)
-cout<<endl;
-}
+
+    }
+    cout<<cnt<<endl;
+
+ }
+
+
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif
     return 0;
 }
-
