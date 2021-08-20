@@ -343,29 +343,24 @@ int arr[n+1];
 for(int i=1;i<=n;i++){
     cin>>arr[i];
 }
-for(int i=1; i<=n; i++){
+for(int i=1;i<=n;i++)
+{
+    cout<<arr[i]<<" ";
+    int cnt=2,j=i;
+    while(j<n){
+        j=j*cnt;
+        if(j<n)
+            cout<<arr[j]<<" ";
 
-cout<<i<<" =";
-     for(int j= i + i; j <=n; j+=i){
+        cnt++;
 
 
-                cout<<j<<" ";
     }
     cout<<endl;
-
 }
-cout<<"----->"<<endl;
-for(int i=1; i<=n; i++){
-
-cout<<arr[i]<<" =";
-     for(int j= i + i; j <=n; j+=i){
 
 
-                cout<<arr[j]<<" ";
-    }
-    cout<<endl;
 
-}
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif

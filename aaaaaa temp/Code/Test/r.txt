@@ -1,0 +1,36 @@
+previos
+previos
+previos
+
+in =2
+g0 =0
+2 
+out =2
+in =1
+g0 =2
+previos
+1 
+in =2
+g0 =0
+1 2 
+out =2
+out =1
+in =0
+g0 =1
+previos
+previos
+0 
+in =2
+g0 =0
+0 2 
+out =2
+in =1
+g0 =2
+previos
+0 1 
+in =2
+g0 =0
+0 1 2 
+out =2
+out =1
+out =0
