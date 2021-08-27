@@ -39,7 +39,7 @@ using namespace std;
 //------------------------------------
 #define ff              first
 #define ss              second
-#define mp              make_pair
+
 #define pb              push_back
 #define ppb             pop_back
 #define tp(v,j)         get<j>(v)
@@ -71,8 +71,7 @@ using namespace std;
 #define MOD             (int)(998244353)
 #define MaxN            100005
 #define inf             0x3f3f3f3f
-#define PI              acos(-1.0)  // 3.1415926535897932
-#define eps             1e-6
+
 
 //#define run_time
 
