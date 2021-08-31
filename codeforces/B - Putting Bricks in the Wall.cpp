@@ -1,3 +1,6 @@
+
+
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -145,35 +148,90 @@ int binarySearch(int arr[], int l, int r, int x)
     return -1;
 }
 
-
 int main()
 {
 #ifdef SAKIB_OVI
     clock_t tStart = clock();
     freopen("input.txt","r",stdin);
-    freopen("result.txt","w",stdout);
+    freopen("outt.txt","w",stdout);
 
 #endif
-
 int t;
 cin>>t;
-while(t--){
-int k;
-cin>>k;
-int cnt=0;
-int g=0;
-while(true)
+while(t--)
 {
-    g++;
-    if(g%3!=0 && g%10 !=3){
-        cnt++;
+    int  n;
+    cin>>n;
+    int up1,up2,lo1,lo2;
+    int m=n-1;
+    for(int i=1;i<=n;i++){
+     string str;
+     cin>>str;
+     if(i==1)
+        up1=str[1]-'0';
+    if(i==2)
+        up2=str[0]-'0';
+     if(i==n-1)
+        lo1=str[n-1]-'0';
+     if(i==n)
+        lo2=str[m-1]-'0';
+
+
     }
-    if(cnt==k)
-        break;
+    //cout<<up1<<up2<<lo1<<lo2<<endl;
+
+    if(up1 == up2 && up2==lo1 && lo1==lo2)
+    {
+        cout<<"2"<<endl;
+        cout<<"1 2"<<endl<<"2 1"<<endl;
+
+    }
+    else if(up1+up2==0 && lo1+lo2==2 || up1+up2==2 && lo1+lo2==0)
+    {
+        cout<<"0"<<endl;
+
+    }
+    else if( up1==up2 && lo1!=lo2 || up1!=up2 && lo1==lo2)
+    {
+        cout<<"1"<<endl;
+        if(lo1!=lo2)
+        {
+            if(up1==lo1)
+            {
+                cout<<m<<" "<<n<<endl;
+            }
+            else
+                cout<<n<<" "<<m<<endl;
+        }
+        else
+        {
+            if(up1==lo1)
+            {
+                cout<<"1 2"<<endl;
+            }
+            else
+                cout<<"2 1"<<endl;
+
+        }
 
 
-}
-cout<<g<<endl;
+    }
+    else if(up1+up2==1 && lo1+lo2==1){
+        cout<<"2"<<endl;
+        if(up1==1)
+        cout<<"1 2"<<endl;
+        else
+        cout<<"2 1"<<endl;
+
+        if(lo1==0)
+         cout<<m<<" "<<n<<endl;
+
+        else
+          cout<<n<<" "<<m<<endl;
+
+
+    }
+
 
 }
 #ifdef SAKIB_OVI

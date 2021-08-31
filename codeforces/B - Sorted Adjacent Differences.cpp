@@ -1,3 +1,5 @@
+
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -74,6 +76,7 @@ using namespace std;
 #define PI              acos(-1.0)  // 3.1415926535897932
 #define eps             1e-6
 
+
 //#define run_time
 
 
@@ -145,37 +148,54 @@ int binarySearch(int arr[], int l, int r, int x)
     return -1;
 }
 
+ long long int range        =   1000000001;
 
 int main()
 {
 #ifdef SAKIB_OVI
     clock_t tStart = clock();
     freopen("input.txt","r",stdin);
-    freopen("result.txt","w",stdout);
+    freopen("r.txt","w",stdout);
 
 #endif
+    int t;
+    cin>>t;
+    while(t--){
+        int n;
+        cin>>n;
+        int arr[n];
+        for(int i=0;i<n;i++){
+            cin>>arr[i];
+        }
+        sort(arr,arr+n);
+        /*for(int i=0;i<n;i++){
+            cout<<arr[i]<<" ";
+        }
+        cout<<endl<<"res=";*/
+        int tp,dn;
+        if(n%2==0){
+            dn=(n/2)-1;
+            tp=n/2;
+        }else{
+            dn=(n/2);
+            tp=(n/2)+1;
+        }
+        while(tp<n){
+            cout<<arr[dn]<<" "<<arr[tp]<<" ";
+            dn--;
+            tp++;
+        }
+        if(dn==0){
+            cout<<arr[dn]<<" ";
+        }
+        cout<<endl;
 
-int t;
-cin>>t;
-while(t--){
-int k;
-cin>>k;
-int cnt=0;
-int g=0;
-while(true)
-{
-    g++;
-    if(g%3!=0 && g%10 !=3){
-        cnt++;
+
+
+
+
     }
-    if(cnt==k)
-        break;
 
-
-}
-cout<<g<<endl;
-
-}
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif

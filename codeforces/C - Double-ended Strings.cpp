@@ -74,6 +74,7 @@ using namespace std;
 #define PI              acos(-1.0)  // 3.1415926535897932
 #define eps             1e-6
 
+
 //#define run_time
 
 
@@ -145,37 +146,56 @@ int binarySearch(int arr[], int l, int r, int x)
     return -1;
 }
 
+ long long int range        =   1000000001;
 
 int main()
 {
+    fastIO  ;
 #ifdef SAKIB_OVI
     clock_t tStart = clock();
     freopen("input.txt","r",stdin);
-    freopen("result.txt","w",stdout);
+    freopen("tempo.txt","w",stdout);
 
 #endif
+    int t;
 
-int t;
-cin>>t;
-while(t--){
-int k;
-cin>>k;
-int cnt=0;
-int g=0;
-while(true)
-{
-    g++;
-    if(g%3!=0 && g%10 !=3){
-        cnt++;
-    }
-    if(cnt==k)
-        break;
+    cin>>t;
+    while(t--){
+        string str,s;
+        cin>>str>>s;
+        if(s.size()<str.size())
+        {
+            swap(s,str);
+        }
+        int k=0, mx=INT_MIN;
+       for(int i=0;i<str.size();i++)
+       {
+           for(int j=0;j<s.size();j++){
+            int cnt=0;
+                if(str[i]==s[j])
+                {
+                    k=i;
+                    int f=j,cnt=0;
+                    while(str[k]==s[f] && k<str.size() && f<s.size())
+                    {
+                        k++;
+                        f++;
+                        cnt++;
+                    }
+                    mx=max(cnt,mx);
+
+
+                }
+           }
+
+       }
+       int res=(str.size()-mx)+(s.size()-mx);
+       cout<<res<<endl;
+
 
 
 }
-cout<<g<<endl;
 
-}
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif

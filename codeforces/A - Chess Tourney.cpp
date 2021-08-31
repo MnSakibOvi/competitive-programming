@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -155,27 +156,24 @@ int main()
 
 #endif
 
-int t;
-cin>>t;
-while(t--){
-int k;
-cin>>k;
-int cnt=0;
-int g=0;
-while(true)
+int n;
+cin>>n;
+int arr[n*2];
+for(int i=0;i<n*2;i++)
 {
-    g++;
-    if(g%3!=0 && g%10 !=3){
-        cnt++;
-    }
-    if(cnt==k)
-        break;
-
-
+    cin>>arr[i];
 }
-cout<<g<<endl;
+int cnt=0;
+int g=n*2,k=0;
+sort(arr,arr+n*2);
 
-}
+if(arr[n-1]>=arr[n])
+
+    cout<<"NO"<<endl;
+else
+    cout<<"YES"<<endl;
+
+
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif

@@ -1,3 +1,6 @@
+
+
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -145,37 +148,49 @@ int binarySearch(int arr[], int l, int r, int x)
     return -1;
 }
 
-
 int main()
 {
 #ifdef SAKIB_OVI
     clock_t tStart = clock();
     freopen("input.txt","r",stdin);
-    freopen("result.txt","w",stdout);
+    freopen("outt.txt","w",stdout);
 
 #endif
-
-int t;
-cin>>t;
-while(t--){
-int k;
-cin>>k;
-int cnt=0;
-int g=0;
-while(true)
-{
-    g++;
-    if(g%3!=0 && g%10 !=3){
-        cnt++;
+long long  n,m,k;
+cin>>n>>m>>k;
+vector<long long int> arr(n+1),sum(n,0),cnt(m+1,0),l(m+1),r(m+1),d(m+1);
+for(int i=0;i<n;i++){
+    cin>>arr[i];
+}
+for(int i=0; i<m; i++)
+    cin>>l[i]>>r[i]>>d[i];
+ for(int i=0; i<k; i++)
+    {
+        long long int x,y;
+        cin>>x>>y;
+        cnt[x-1] ++;
+        if(y<m)
+        cnt[y]--;
     }
-    if(cnt==k)
-        break;
-
+for(int i=0;i<m;i++)
+{
+    if(i>0)
+    {
+        cnt[i]+=cnt[i-1];
+    }
+    sum[l[i]-1]+=cnt[i]*d[i];
+    if(r[i]<n)
+    sum[r[i]]-=cnt[i]*d[i];
 
 }
-cout<<g<<endl;
+ for(int i=0; i<n; i++)
+    {
+       if(i!=0)
+        sum[i]+=sum[i-1];
+        cout<<arr[i] + sum[i]<<" ";
+    }
+cout<<endl;
 
-}
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif

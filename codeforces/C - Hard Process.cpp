@@ -1,3 +1,6 @@
+
+
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -151,31 +154,87 @@ int main()
 #ifdef SAKIB_OVI
     clock_t tStart = clock();
     freopen("input.txt","r",stdin);
-    freopen("result.txt","w",stdout);
+    freopen("out.txt","w",stdout);
 
 #endif
+    int n,k;
+    cin>>n>>k;
+    int arr[n],z=0,o=0;
+    vector<int>v;
+    for(int i=0;i<n;i++)
+    {
 
-int t;
-cin>>t;
-while(t--){
-int k;
-cin>>k;
-int cnt=0;
-int g=0;
-while(true)
-{
-    g++;
-    if(g%3!=0 && g%10 !=3){
-        cnt++;
+        cin>>arr[i];
+        if(arr[i]==0)
+            v.push_back(i);
+
     }
-    if(cnt==k)
-        break;
+    if(v.size()<=k)
+    {
+        cout<<n<<endl;
+        for(int i=0;i<n;i++)
+        {
+            cout<<"1 ";
+        }
+        cout<<endl;
+    }else{
+        int c=0;
+        k++;
+        int mx,a,b;
+        mx=v[k-1];
+        a=0;
+        b=v[k-1]-1;
 
 
-}
-cout<<g<<endl;
+        for(int i=0;i<v.size();i++)
+            {
+                if(i+k<v.size())
+                {
+                   // cout<<v[i]<<" "<<v[i+k]<<" "<<(v[i+k]-v[i])-1<<endl;
+                  int  dis=(v[i+k]-v[i])-1;
+                    if(dis>mx)
+                   {
+                        mx=dis;
+                       a= v[i]+1;
+                       b=v[i+k]-1;
+                      // cout<<a<<" "<<b<<endl;
 
-}
+                   }
+                   // cout<<a<<" <->"<<b<<endl;
+
+                }
+                else
+                {
+                     int  dis=(n-v[i])-1;
+
+                    if(dis>mx)
+                    {
+                        mx=dis;
+                       a= v[i]+1;
+                       b=n-1;
+                      // cout<<a<<" "<<b<<endl;
+
+                    }
+
+                }
+
+
+
+            }
+          cout<<mx<<endl;
+            for(int i=0;i<n;i++)
+            {
+                if(i<a || i>b)
+                {
+                    cout<<arr[i]<<" ";
+                }
+                else cout<<"1 ";
+            }
+            cout<<endl;
+
+    }
+
+
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif

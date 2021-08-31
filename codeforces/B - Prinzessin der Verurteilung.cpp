@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -74,6 +75,7 @@ using namespace std;
 #define PI              acos(-1.0)  // 3.1415926535897932
 #define eps             1e-6
 
+
 //#define run_time
 
 
@@ -145,39 +147,102 @@ int binarySearch(int arr[], int l, int r, int x)
     return -1;
 }
 
+ long long int range        =   100000-10;
+vector<string> v;
+void makestring(){
+     for(char c='a';c<='z';c++)
+    {
+        string s="";
+        s+=c;
+         v.pb(s);
+    }
+    for(char c='a';c<='z';c++)
+    {
+        for(char d='a';d<='z';d++)
+            {
+                string ss="";
+                ss+=c;
+                ss+=d;
+                v.pb(ss);
+            }
+    }
+    for(char c='a';c<='z';c++)
+    {
+        for(char d='a';d<='z';d++)
+            {
 
+                for(char e='a';e<='z';e++)
+                    {
+                        string s="";
+                        s+=c;
+                        s+=d;
+                        s+=e;
+
+                        v.pb(s);
+                    }
+            }
+    }
+}
 int main()
 {
 #ifdef SAKIB_OVI
     clock_t tStart = clock();
     freopen("input.txt","r",stdin);
-    freopen("result.txt","w",stdout);
+    freopen("outtt.txt","w",stdout);
 
 #endif
+makestring();
 
 int t;
 cin>>t;
 while(t--){
-int k;
-cin>>k;
-int cnt=0;
-int g=0;
-while(true)
-{
-    g++;
-    if(g%3!=0 && g%10 !=3){
-        cnt++;
+    int n;
+    cin>>n;
+    string str;
+    cin>>str;
+
+    for(int i=0;i<v.size();i++)
+    {
+
+        string s=v[i];
+        int flag=0;
+        for(int j=0;j<str.size();j++){
+            if(s.size()==1)
+            {
+                if(str[j]==s[0])
+                {
+                    flag=1;
+                }
+
+            }else if(s.size()==2){
+                if(j<n-1)
+                {
+                    if(str[j]==s[0] && str[j+1]==s[1])
+                        flag=1;
+                }
+            }else{
+                 if(j<n-2)
+                {
+                    if(str[j]==s[0] && str[j+1]==s[1] && str[j+2]==s[2])
+                        flag=1;
+                }
+
+            }
+        }
+        if(flag==0)
+        {
+            cout<<s<<endl;
+            break;
+        }
+
+
+
     }
-    if(cnt==k)
-        break;
-
-
 }
-cout<<g<<endl;
 
-}
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif
     return 0;
+}
 }

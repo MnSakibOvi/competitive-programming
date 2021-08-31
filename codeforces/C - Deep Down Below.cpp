@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -74,6 +75,7 @@ using namespace std;
 #define PI              acos(-1.0)  // 3.1415926535897932
 #define eps             1e-6
 
+
 //#define run_time
 
 
@@ -145,37 +147,116 @@ int binarySearch(int arr[], int l, int r, int x)
     return -1;
 }
 
+ long long int range        =   1000000001;
+int arr[20];
+int n;
+vector<int>v;
 
+void bt(int i){
+    if(i==n){
+        for(int j=0;j<v.size();j++){
+            cout<<v[j]<<" ";
+        }
+        cout<<endl;
+        return;
+    }
+
+
+    bt(i+1);//0 1 2
+    v.push_back(arr[i]);//neoa
+
+    bt(i+1);//3+1
+    v.pop_back();//bad deoa
+
+}
+int fun1(int x, int sum)
+{
+    if(x==0)
+    {
+        return sum;
+    }
+    else{
+        return fun1(x-1,sum+x);
+    }
+
+}
+bool cmp(pair<int, int> a, pair<int, int> b){
+    if(a.ff == b.ff) return a.ss < b.ss;
+    return a.ff < b.ff;
+}
 int main()
 {
 #ifdef SAKIB_OVI
     clock_t tStart = clock();
     freopen("input.txt","r",stdin);
-    freopen("result.txt","w",stdout);
+    freopen("outtt.txt","w",stdout);
 
 #endif
+   int t;
+   cin>>t;
+   while(t--){
+      int n;
+      cin>>n;
+      vector< pair <int,int> > v;
+      while(n--)
+      {
+        int k,x,cl=0,cn=0,in=0;
+        cin>>k;
+        int mx=INT_MIN;
+        for(int i=0;i<k;i++)
+        {
+            cin>>x;
+           if(i==0)
+           {
+            in=x+1;
+            cn=x+1;
+           }
+           else if(cn<=x)
+           {
+            //cout<<cn<<" "<<x+1<<" ";
+            in+=(x)-cn;
+            //cout<<(x+1)-cn<<endl;
+            cn=x+1;
 
-int t;
-cin>>t;
-while(t--){
-int k;
-cin>>k;
-int cnt=0;
-int g=0;
-while(true)
-{
-    g++;
-    if(g%3!=0 && g%10 !=3){
-        cnt++;
-    }
-    if(cnt==k)
-        break;
+           }
+           else{
+            cn++;
+
+           }
+
+        }
+        int ex;
+
+        ex=in+k;
+       // cout<<"->"<<in<<" "<<ex<<endl;
+        v.push_back(make_pair(in,ex));
+      }
+     sort(v.begin(), v.end(), cmp);
+      int res=v[0].first,last=v[0].second;
+      //cout<<v[0].first<<" "<<v[0].second<<endl;;
+      for(int i=1;i<v.size();i++){
+    //  cout<<v[i].first<<" "<<v[i].second<<endl;
+         last=v[i-1].second;
+         int now=v[i].first;
+          if(last<now)
+          {
 
 
-}
-cout<<g<<endl;
+            int g=now-last;
+            //cout<<"g="<<g<<endl;
+            res+=g;
 
-}
+          }else{
+            int g=last-now;
+            v[i].second+=g;
+
+          }
+      }
+     cout<<res<<endl;
+
+
+   }
+
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif

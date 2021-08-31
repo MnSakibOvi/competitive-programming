@@ -1,3 +1,6 @@
+
+
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -146,14 +149,17 @@ int binarySearch(int arr[], int l, int r, int x)
     return -1;
 }
 
- long long int range        =   1000000001;
+long long int range        =   1000000001;
 int arr[20];
 int n;
 vector<int>v;
 
-void bt(int i){
-    if(i==n){
-        for(int j=0;j<v.size();j++){
+void bt(int i)
+{
+    if(i==n)
+    {
+        for(int j=0; j<v.size(); j++)
+        {
             cout<<v[j]<<" ";
         }
         cout<<endl;
@@ -174,109 +180,242 @@ int fun1(int x, int sum)
     {
         return sum;
     }
-    else{
+    else
+    {
         return fun1(x-1,sum+x);
     }
 
-}
-bool cmp(pair<int, int> a, pair<int, int> b){
-    if(a.ff == b.ff) return a.ss < b.ss;
-    return a.ff < b.ff;
 }
 int main()
 {
 #ifdef SAKIB_OVI
     clock_t tStart = clock();
     freopen("input.txt","r",stdin);
-    freopen("outtt.txt","w",stdout);
+    freopen("bb.txt","w",stdout);
 
 #endif
-   int t;
-   cin>>t;
-   while(t--){
-     int n;
-     cin>>n;
-     int cnt=0;
-     int r,p,s;
-     cin>>r>>p>>s;
-     string str;
-     cin>>str;
-     string st="";
-     for(int i=0;i<n;i++)
-         st+='X';
-     for(int i=0;i<n;i++)
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        string str;
+        cin>>str;
+        char c;
+        int flag=0;
+        map<char,int>mp;
+        for(int i=0; i<n; i++)
         {
-          if(str[i]=='P')
-          {
-            if(s>0)
+            if(str[i]=='1'||str[i]=='4'||str[i]=='6'||str[i]=='8'||str[i]=='9')
             {
-              s--;
-              cnt++;
-              st[i]='S';
+                flag=1;
+                c=str[i];
             }
-          }
-          else if(str[i]=='R')
-          {
-             if(p>0)
-            {
-              p--;
-              cnt++;
-              st[i]='P';
-            }
-
-          }
-          else
-          {
-             if(r>0)
-            {
-              r--;
-              cnt++;
-              st[i]='R';
-            }
-
-          }
-
-
-
+            mp[str[i]]++;
 
         }
-        int g=ceil(n/2.00) ;
-     if(cnt>=g)
-     {
-
-        cout<<"YES"<<endl;
-        for(int i=0;i<n;i++)
+       // cout<<str<<" =";
+        if(flag==1)
         {
-            if(st[i]!='X')
-              cout<<st[i];
+            cout<<"1"<<endl<<c<<endl;
+        }
+        else if(str=="23" || str=="53" || str=="37" || str=="73")
+        {
+            cout<<"2"<<endl;
+            cout<<str<<endl;
+
+        }
+        else if(mp['2']>=2)
+        {
+            cout<<"2"<<endl;
+            cout<<"22"<<endl;
+
+        }
+        else if(mp['3']>=2)
+        {
+            cout<<"2"<<endl;
+            cout<<"33"<<endl;
+
+        }
+        else if(mp['5']>=2)
+        {
+            cout<<"2"<<endl;
+            cout<<"55"<<endl;
+
+        }
+        else if(mp['7']>=2)
+        {
+            cout<<"2"<<endl;
+            cout<<"77"<<endl;
+
+        }
+        else if(mp['2']>=1 && mp['5']>=1)
+        {
+            int fl=0,fla=0;
+            for(int i=0; i<str.size(); i++)
+            {
+                if(str[i]=='2')
+                    fl=1;
+
+                if(fl==1 && str[i]=='5')
+                {
+                    fla=1;
+                    break;
+                }
+
+
+            }
+            if(fla==1)
+            {
+                cout<<"2"<<endl;
+                cout<<"25"<<endl;
+            }
             else
             {
-              if(s>0)
-                cout<<"S",s--;
-              else if(p>0)
-                 cout<<"P",p--;
-               else
-                cout<<"R",r--;
+                cout<<"2"<<endl;
+                cout<<"52"<<endl;
+            }
 
+
+        }
+        else if(mp['2']>=1 && mp['7']>=1)
+        {
+
+            int fl=0,fla=0;
+            for(int i=0; i<str.size(); i++)
+            {
+                if(str[i]=='2')
+                    fl=1;
+
+                if(fl==1 && str[i]=='7')
+                {
+                    fla=1;
+                    break;
+                }
 
 
             }
+            if(fla==1)
+            {
+                cout<<"2"<<endl;
+                cout<<"27"<<endl;
+            }
+            else
+            {
+                cout<<"2"<<endl;
+                cout<<"72"<<endl;
+            }
+
         }
-        line
+        else if(mp['7']>=1 && mp['5']>=1)
+        {
 
-     }
-     else 
-     {
-      cout<<"NO";
-       line
+            int fl=0,fla=0;
+            for(int i=0; i<str.size(); i++)
+            {
+                if(str[i]=='7')
+                    fl=1;
 
-     }
+                if(fl==1 && str[i]=='5')
+                {
+                    fla=1;
+                    break;
+                }
 
 
-  }
+            }
+            if(fla==1)
+            {
+                cout<<"2"<<endl;
+                cout<<"75"<<endl;
+            }
+            else
+            {
+                cout<<"2"<<endl;
+                cout<<"57"<<endl;
+
+            }
+        }
+        else if(mp['3']>=1 && mp['5']>=1)
+        {
+            int fl=0,fla=0;
+            for(int i=0; i<str.size(); i++)
+            {
+                if(str[i]=='3')
+                    fl=1;
+
+                if(fl==1 && str[i]=='5')
+                {
+                    fla=1;
+                    break;
+                }
+
+
+            }
+            if(fla==1)
+            {
+                cout<<"2"<<endl;
+                cout<<"35"<<endl;
+            }
+
+            else if(mp['2']>=1 && mp['3']>=1)
+            {
+
+                int fl=0,fla=0;
+                for(int i=0; i<str.size(); i++)
+                {
+                    if(str[i]=='3')
+                        fl=1;
+
+                    if(fl==1 && str[i]=='2')
+                    {
+                        fla=1;
+                        break;
+                    }
+
+
+                }
+                if(fla==1)
+                {
+                    cout<<"2"<<endl;
+                    cout<<"32"<<endl;
+                }
+            }
+
+
+
+    }
+    else if(mp['2']>=1 && mp['3']>=1)
+    {
+
+        int fl=0,fla=0;
+        for(int i=0; i<str.size(); i++)
+        {
+            if(str[i]=='3')
+                fl=1;
+
+            if(fl==1 && str[i]=='2')
+            {
+                fla=1;
+                break;
+            }
+
+
+        }
+        if(fla==1)
+        {
+            cout<<"2"<<endl;
+            cout<<"32"<<endl;
+        }
+    }
+
+
+    //cout<<endl;
+}
 
 #ifdef SAKIB_OVI
-    fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
+fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif
-    return 0;
+return 0;
 }

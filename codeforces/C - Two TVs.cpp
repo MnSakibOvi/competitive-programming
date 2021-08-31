@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -155,27 +156,42 @@ int main()
 
 #endif
 
-int t;
-cin>>t;
-while(t--){
-int k;
-cin>>k;
-int cnt=0;
-int g=0;
-while(true)
-{
-    g++;
-    if(g%3!=0 && g%10 !=3){
-        cnt++;
-    }
-    if(cnt==k)
+int n;
+cin>>n;
+  vector< pair <int,int> > vect;
+ int x,y;
+  for(int i=0;i<n;i++){
+    cin>>x>>y;
+    vect.push_back( make_pair(x,y) );
+
+  }
+    sort(vect.begin(), vect.end());
+   int flag=0;
+   int a=min(vect[0].second,vect[1].second);
+      int b=max(vect[0].second,vect[1].second);
+ for(int i=2;i<n;i++){
+    if(vect[i].first <= a && vect[i].first <= b)
+      {
+        flag=1;
         break;
+      }
 
+      if(vect[i].second >a || vect[i].second >b){
+        int g=max(b,vect[i].second );
+        if(g==b){
+            a=vect[i].second;
+        }else{
+            a=b;
+            b=g;
+        }
+      }
+ }
+  if(flag==0){
+    cout<<"YES"<<endl;
+  }else{
+    cout<<"NO"<<endl;
+  }
 
-}
-cout<<g<<endl;
-
-}
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif

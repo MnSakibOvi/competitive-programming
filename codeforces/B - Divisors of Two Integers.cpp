@@ -1,3 +1,5 @@
+
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -74,6 +76,7 @@ using namespace std;
 #define PI              acos(-1.0)  // 3.1415926535897932
 #define eps             1e-6
 
+
 //#define run_time
 
 
@@ -145,37 +148,95 @@ int binarySearch(int arr[], int l, int r, int x)
     return -1;
 }
 
+ long long int range        =   1000000001;
 
 int main()
 {
+    fastIO  ;
 #ifdef SAKIB_OVI
     clock_t tStart = clock();
     freopen("input.txt","r",stdin);
-    freopen("result.txt","w",stdout);
+    freopen("r.txt","w",stdout);
 
 #endif
+    int t;
 
-int t;
-cin>>t;
-while(t--){
-int k;
-cin>>k;
-int cnt=0;
-int g=0;
-while(true)
-{
-    g++;
-    if(g%3!=0 && g%10 !=3){
-        cnt++;
+    t=1;
+    while(t--){
+        int n;
+      cin>>n;
+      int arr[n];
+      long long int sum=0,sum1=0,sum2=0;
+
+      int x=1,y=1;
+      map<int,int>m;
+      for(int i=0;i<n;i++){
+        cin>>arr[i];
+        m[arr[i]]++;
+      }
+      std::vector<int> v;
+     for(int i=0;i<n;i++)
+     {
+        int g=arr[i];
+        int cnt=0;
+        map<int,int>mp;
+        for(int j=0;j<n;j++){
+            if(g%arr[j]==0 && mp[arr[j]]==0)
+            {
+                mp[arr[j]]++;
+                cnt++;
+
+            }
+        }
+        v.push_back(cnt);
+     }
+      for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++)
+        {
+            if(i!=j && v[i]+v[j]==n)
+            {
+                int g=arr[i];
+                int h=arr[j];
+               // cout<<g<<" "<<h<<endl;
+               int fl=0;
+               for( auto  mm :m)
+               {
+                //cout<<mm.first<<" "<<mm.second<<endl;
+                if(mm.second==2)
+                {
+                    if(g%mm.first !=0 || h%mm.first !=0 )
+                    {
+                        fl=1;
+                    }
+
+                }else
+                {
+                    if(g%mm.first !=0 && h%mm.first !=0 )
+                    {
+                        fl=1;
+                    }
+
+                }
+               }
+               if(fl==0)
+               { cout<<max(g,h)<<" "<<min(g,h)<<endl;i=n;j=n;}
+
+
+
+
+
+
+
+            }
+        }
+      }
+
+
+
     }
-    if(cnt==k)
-        break;
 
 
-}
-cout<<g<<endl;
 
-}
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif

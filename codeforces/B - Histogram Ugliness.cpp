@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -74,6 +75,7 @@ using namespace std;
 #define PI              acos(-1.0)  // 3.1415926535897932
 #define eps             1e-6
 
+
 //#define run_time
 
 
@@ -145,35 +147,117 @@ int binarySearch(int arr[], int l, int r, int x)
     return -1;
 }
 
+ long long int range        =   1000000001;
+int arr[20];
+int n;
+vector<int>v;
 
+void bt(int i){
+    if(i==n){
+        for(int j=0;j<v.size();j++){
+            cout<<v[j]<<" ";
+        }
+        cout<<endl;
+        return;
+    }
+
+
+    bt(i+1);//0 1 2
+    v.push_back(arr[i]);//neoa
+
+    bt(i+1);//3+1
+    v.pop_back();//bad deoa
+
+}
+int fun1(int x, int sum)
+{
+    if(x==0)
+    {
+        return sum;
+    }
+    else{
+        return fun1(x-1,sum+x);
+    }
+
+}
+bool cmp(pair<int, int> a, pair<int, int> b){
+    if(a.ff == b.ff) return a.ss < b.ss;
+    return a.ff < b.ff;
+}
 int main()
 {
 #ifdef SAKIB_OVI
     clock_t tStart = clock();
     freopen("input.txt","r",stdin);
-    freopen("result.txt","w",stdout);
+    freopen("bb.txt","w",stdout);
 
 #endif
+   int t;
+   cin>>t;
+   while(t--){
+    int n;
+    cin>>n;
+    int arr[n];
+    long long int sum=0;
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
 
-int t;
-cin>>t;
-while(t--){
-int k;
-cin>>k;
-int cnt=0;
-int g=0;
-while(true)
-{
-    g++;
-    if(g%3!=0 && g%10 !=3){
-        cnt++;
     }
-    if(cnt==k)
-        break;
+  long long  int cnt=0;
+    sum+=arr[0]+arr[n-1];
 
 
-}
-cout<<g<<endl;
+   // cout<<sum<<endl;
+    for(int i=1;i<n;i++)
+    {
+
+        int l=arr[i-1];
+        int mx=max(arr[i],l);
+        int mn=min(arr[i],l);
+        sum+=mx-mn;
+
+    }
+   // cout<<sum<<endl;
+    if(arr[0]>arr[1]){
+        int gap=arr[0]-arr[1];
+
+        cnt+=gap;
+        sum=sum-(gap*2);
+    }
+    // cout<<sum<<endl;
+    if(arr[n-1]>arr[n-2]){
+        int gap=arr[n-1]-arr[n-2];
+
+        cnt+=gap;
+        sum=sum-(gap*2);
+    }
+    //cout<<sum<<endl;
+
+
+      for(int i=1;i<n-1;i++)
+    {
+
+        int l=arr[i-1];
+        int r=arr[i+1];
+        if(arr[i]>l && arr[i]>r)
+        {
+            int mx=max(l,r);
+          long long  int gap=arr[i]-mx;
+             cnt+=gap;
+             sum=sum-(gap*2);
+
+        }
+
+
+
+    }
+    if(n==1)
+    {
+        cout<<arr[0]<<endl;
+
+    }else
+    cout<<sum+cnt<<endl;
+
 
 }
 #ifdef SAKIB_OVI

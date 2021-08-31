@@ -1,3 +1,5 @@
+
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -74,6 +76,7 @@ using namespace std;
 #define PI              acos(-1.0)  // 3.1415926535897932
 #define eps             1e-6
 
+
 //#define run_time
 
 
@@ -145,37 +148,103 @@ int binarySearch(int arr[], int l, int r, int x)
     return -1;
 }
 
+ long long int range        =   1000000001;
+int arr[20];
+int n;
+vector<int>v;
 
+void bt(int i){
+    if(i==n){
+        for(int j=0;j<v.size();j++){
+            cout<<v[j]<<" ";
+        }
+        cout<<endl;
+        return;
+    }
+
+
+    bt(i+1);//0 1 2
+    v.push_back(arr[i]);//neoa
+
+    bt(i+1);//3+1
+    v.pop_back();//bad deoa
+
+}
 int main()
 {
 #ifdef SAKIB_OVI
     clock_t tStart = clock();
     freopen("input.txt","r",stdin);
-    freopen("result.txt","w",stdout);
+    freopen("pp.txt","w",stdout);
 
 #endif
-
 int t;
 cin>>t;
 while(t--){
-int k;
-cin>>k;
-int cnt=0;
-int g=0;
-while(true)
+  int n,cnt=0;
+  cin>>n;
+vector<int>v[n+1];
+bool d[n+1],p[n+1];
+for(int i=1;i<=n;i++)
 {
-    g++;
-    if(g%3!=0 && g%10 !=3){
-        cnt++;
+    d[i]=false;
+    p[i]=false;
+
+}
+for(int i=1;i<=n;i++)
+{
+    int q,fl=0;
+    cin>>q;
+    while(q--)
+    {
+        int a;
+        cin>>a;
+        if(p[a]==false && fl==0)
+        {
+            p[a]=true;
+            d[i]=true;
+           // cout<<i<<"= "<<a<<endl;
+            fl=1;
+            cnt++;
+        }
+
     }
-    if(cnt==k)
-        break;
+
+}
+if(cnt==n)
+{
+    cout<<"OPTIMAL"<<endl;
+}
+else{
+    cout<<"IMPROVE"<<endl;
+    int res1,res2,fl1=0,fl2=0;
+    for(int i=1;i<=n;i++)
+    {
+        if(fl1==0 && d[i]==false)
+        {
+            fl1=1;
+            res1=i;
+        }
+         if(fl2==0 && p[i]==false)
+        {
+            fl2=1;
+            res2=i;
+        }
+     if(fl1==1 && fl2==1)break;
+
+    }
+    cout<<res1<<" "<<res2<<endl;
+}
+
+
+
+
+
 
 
 }
-cout<<g<<endl;
 
-}
+
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif
