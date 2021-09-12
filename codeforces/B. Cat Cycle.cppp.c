@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -145,42 +146,42 @@ int binarySearch(int arr[], int l, int r, int x)
 
     return -1;
 }
+int arr[100];
+int n;
 
- long long int range        =   100000-10;
-vector<string> v;
-void makestring(){
-     for(char c='a';c<='z';c++)
-    {
-        string s="";
-        s+=c;
-         v.pb(s);
-    }
-    for(char c='a';c<='z';c++)
-    {
-        for(char d='a';d<='z';d++)
-            {
-                string ss="";
-                ss+=c;
-                ss+=d;
-                v.pb(ss);
-            }
-    }
-    for(char c='a';c<='z';c++)
-    {
-        for(char d='a';d<='z';d++)
-            {
-               
-                for(char e='a';e<='z';e++)
-                    {
-                        string s="";
-                        s+=c;
-                        s+=d;
-                        s+=e;
 
-                        v.pb(s);
-                    }
-            }
+ long long int range        =   1000000001;
+ vector<int>v;
+ void  bt(int i){
+    if(i==n)
+    {
+        for(int i=0;i<v.size();i++)
+        {
+            cout<<v[i]<<" ";
+        }
+        cout<<endl;
+        return;
+
     }
+    cout<<"previos"<<endl;
+    bt(i+1);
+    //cout<<"first"<<endl;
+    v.push_back(arr[i]);
+    cout<<"in ="<<arr[i]<<endl;
+     cout<<"g0 ="<<arr[i+1]<<endl;
+    bt(i+1);
+
+    //cout<<"last"<<endl;
+     cout<<"out ="<<v[v.size()-1]<<endl;
+    v.pop_back();
+
+
+ }
+int function()
+{
+    int a;
+    a = 10;
+    return 0;
 }
 int main()
 {
@@ -190,22 +191,26 @@ int main()
     freopen("outttt.txt","w",stdout);
 
 #endif
-int t;
-cin>>t;
-while(t--){
-   long long int n,m;
-    cin>>n>>m;
-  long long  int cnt=1,sum=1;
-    for(int i=0;i<2;i++)
+   int t;
+   cin>>t;
+   while(t--){
+    int n,k;
+    cin>>n>>k;
+    if(n%2==0)
     {
-        cnt=cnt*m;
-        sum+=cnt;
-    }
-    cout<<sum<<endl;
+        int g=k%n;
+       if(g==0)
+        cout<<n<<endl;
+    else
+        cout<<k%n<<endl;
+    }else{
 
-
-}
-
+         k--;
+         int g=(n/2);
+         int f=k/g;
+         cout<<((k  + f) % n + 1)<<endl;
+         }
+   }
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif

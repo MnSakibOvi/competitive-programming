@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -146,134 +147,26 @@ int binarySearch(int arr[], int l, int r, int x)
     return -1;
 }
 
- long long int range        =   1000000001;
-int arr[20];
-int n;
-vector<int>v;
-
-void bt(int i){
-    if(i==n){
-        for(int j=0;j<v.size();j++){
-            cout<<v[j]<<" ";
-        }
-        cout<<endl;
-        return;
-    }
-
-
-    bt(i+1);//0 1 2
-    v.push_back(arr[i]);//neoa
-
-    bt(i+1);//3+1
-    v.pop_back();//bad deoa
-
-}
-int fun1(int x, int sum)
+bool cmp(pair<ll,ll>a, pair<ll,ll>b)
 {
-    if(x==0)
-    {
-        return sum;
-    }
-    else{
-        return fun1(x-1,sum+x);
-    }
-
-}
-bool cmp(pair<int, int> a, pair<int, int> b){
-    if(a.ff == b.ff) return a.ss < b.ss;
-    return a.ff < b.ff;
+     if(a.first<b.first) return 1;
+     if(a.first==b.first)
+     {
+          if(a.second<=b.second) return 1;
+          return 0;
+     }
+     return 0;
 }
 int main()
 {
 #ifdef SAKIB_OVI
     clock_t tStart = clock();
     freopen("input.txt","r",stdin);
-    freopen("outtt.txt","w",stdout);
+    freopen("outttt.txt","w",stdout);
 
 #endif
-   int t;
-   cin>>t;
-   while(t--){
-     int n;
-     cin>>n;
-     int cnt=0;
-     int r,p,s;
-     cin>>r>>p>>s;
-     string str;
-     cin>>str;
-     string st="";
-     for(int i=0;i<n;i++)
-         st+='X';
-     for(int i=0;i<n;i++)
-        {
-          if(str[i]=='P')
-          {
-            if(s>0)
-            {
-              s--;
-              cnt++;
-              st[i]='S';
-            }
-          }
-          else if(str[i]=='R')
-          {
-             if(p>0)
-            {
-              p--;
-              cnt++;
-              st[i]='P';
-            }
+https://lightoj.com/problem/brush-2
 
-          }
-          else
-          {
-             if(r>0)
-            {
-              r--;
-              cnt++;
-              st[i]='R';
-            }
-
-          }
-
-
-
-
-        }
-        int g=ceil(n/2.00) ;
-     if(cnt>=g)
-     {
-
-        cout<<"YES"<<endl;
-        for(int i=0;i<n;i++)
-        {
-            if(st[i]!='X')
-              cout<<st[i];
-            else
-            {
-              if(s>0)
-                cout<<"S",s--;
-              else if(p>0)
-                 cout<<"P",p--;
-               else
-                cout<<"R",r--;
-
-
-
-            }
-        }
-        line
-
-     }
-     else 
-     {
-      cout<<"NO";
-       line
-
-     }
-
-
-  }
 
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);

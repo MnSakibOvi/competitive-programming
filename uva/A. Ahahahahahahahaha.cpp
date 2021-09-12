@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -146,42 +147,7 @@ int binarySearch(int arr[], int l, int r, int x)
     return -1;
 }
 
- long long int range        =   100000-10;
-vector<string> v;
-void makestring(){
-     for(char c='a';c<='z';c++)
-    {
-        string s="";
-        s+=c;
-         v.pb(s);
-    }
-    for(char c='a';c<='z';c++)
-    {
-        for(char d='a';d<='z';d++)
-            {
-                string ss="";
-                ss+=c;
-                ss+=d;
-                v.pb(ss);
-            }
-    }
-    for(char c='a';c<='z';c++)
-    {
-        for(char d='a';d<='z';d++)
-            {
-               
-                for(char e='a';e<='z';e++)
-                    {
-                        string s="";
-                        s+=c;
-                        s+=d;
-                        s+=e;
 
-                        v.pb(s);
-                    }
-            }
-    }
-}
 int main()
 {
 #ifdef SAKIB_OVI
@@ -190,21 +156,76 @@ int main()
     freopen("outttt.txt","w",stdout);
 
 #endif
-int t;
-cin>>t;
-while(t--){
-   long long int n,m;
-    cin>>n>>m;
-  long long  int cnt=1,sum=1;
-    for(int i=0;i<2;i++)
+    int t;
+    cin>>t;
+    while(t--)
     {
-        cnt=cnt*m;
-        sum+=cnt;
+        int n;
+        cin>>n;
+        int arr[n];
+        int one=0,zero=0;
+        for(int i=0; i<n; i++)
+        {
+           cin>>arr[i];
+            if(arr[i]==0)
+                zero++;
+            else
+                one++;
+        }
+
+        if(n==2 )
+        {
+
+            if(zero==0)
+                {
+                  cout<<"2"<<endl;
+                  for(int i=0; i<n; i++)
+
+                  cout<<"1 ";
+                }
+            else
+            {
+              cout<<"1"<<endl;
+
+                  cout<<"0 ";
+
+            }
+        }
+        else
+        {
+           int k;
+           k=n/2;
+           k+=(k%2);
+           int fl=0;
+           cout<<k<<endl;
+
+             for(int i=0;i<n-1;i++){
+                if(arr[i]==arr[i+1])
+                {
+                  cout<<arr[i]<<" "<<arr[i+1]<<" ";
+                  k-=2;
+                  i++;
+                }
+                else if(arr[i+1]==arr[i+2] && i+2<n)
+                {
+                  cout<<arr[i+1]<<" "<<arr[i+2]<<" ";
+                  i+=2;
+                  k-=2;
+                }else if(arr[i]==arr[i+2] && i+2<n)
+                {
+                   cout<<arr[i]<<" "<<arr[i+2]<<" ";
+                  i+=2;
+                  k-=2;
+
+                }
+                if(k==0)
+                  break;
+             }
+
+
+        }
+        cout<<endl;
     }
-    cout<<sum<<endl;
-
-
-}
 
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);

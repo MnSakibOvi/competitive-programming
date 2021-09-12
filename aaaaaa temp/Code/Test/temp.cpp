@@ -176,21 +176,50 @@ int n;
     
 
  }
-
+int function()
+{
+    int a;
+    a = 10;
+    return 0;
+}
+void solve(){
+    int n;
+    cin >> n;
+    vector < int > arr(n+1);
+    for(int i = 1; i <= n; i++){
+        cin >> arr[i];
+    }
+    cout << (n/2)*6 << endl;
+    for(int i = 1; i <= n; i += 2){
+      //  cout<<arr[i]<<">-<"<<arr[i+1]<<endl;;
+     //arr[i]+=arr[i+1];
+        cout << "1 " << i << " " << i+1<< endl;
+     // arr[i+1]-=arr[i];
+        cout << "2 " << i << " " << i+1 << endl;
+     // arr[i]+=arr[i+1];
+        cout << "1 " << i << " " << i+1<< endl;
+     // arr[i+1]-=arr[i];
+         cout << "2 " << i << " " << i+1 << endl;
+  //  arr[i]+=arr[i+1];
+        cout << "1 " << i << " " << i+1<< endl;;
+    // arr[i+1]-=arr[i];
+        cout << "2 " << i << " " << i+1 << endl;
+    }
+ 
+}
 int main()
 {
 #ifdef SAKIB_OVI
     clock_t tStart = clock();
     freopen("input.txt","r",stdin);
-    freopen("r.txt","w",stdout);
- 
+    freopen("outttt.txt","w",stdout);
+    
 #endif
-cin>>n;
-for(int i=0;i<n;i++){
-    cin>>arr[i];
-}
-bt(0);
-
+   int t;
+   cin>>t;
+   while(t--){
+   solve();
+   }
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif

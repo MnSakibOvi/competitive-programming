@@ -1,3 +1,5 @@
-1
-27
-qabzwsxedcrfvtgbyhnujmiklop
+2
+4
+1 1 1 1
+4
+4 3 1 2

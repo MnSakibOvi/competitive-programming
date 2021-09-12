@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -169,7 +170,7 @@ void makestring(){
     {
         for(char d='a';d<='z';d++)
             {
-               
+
                 for(char e='a';e<='z';e++)
                     {
                         string s="";
@@ -196,12 +197,20 @@ while(t--){
    long long int n,m;
     cin>>n>>m;
   long long  int cnt=1,sum=1;
-    for(int i=0;i<2;i++)
+    for(int i=0;i<3;i++)
     {
         cnt=cnt*m;
         sum+=cnt;
     }
-    cout<<sum<<endl;
+   long long int g=n/sum;
+   for(int i=0;i<4;i++)
+   {
+    cout<<g<<" ";
+    g*=m;
+   }
+   cout<<endl;
+
+
 
 
 }

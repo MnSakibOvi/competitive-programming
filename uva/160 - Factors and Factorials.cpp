@@ -1,3 +1,5 @@
+
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -146,41 +148,15 @@ int binarySearch(int arr[], int l, int r, int x)
     return -1;
 }
 
- long long int range        =   100000-10;
-vector<string> v;
-void makestring(){
-     for(char c='a';c<='z';c++)
-    {
-        string s="";
-        s+=c;
-         v.pb(s);
-    }
-    for(char c='a';c<='z';c++)
-    {
-        for(char d='a';d<='z';d++)
-            {
-                string ss="";
-                ss+=c;
-                ss+=d;
-                v.pb(ss);
-            }
-    }
-    for(char c='a';c<='z';c++)
-    {
-        for(char d='a';d<='z';d++)
-            {
-               
-                for(char e='a';e<='z';e++)
-                    {
-                        string s="";
-                        s+=c;
-                        s+=d;
-                        s+=e;
-
-                        v.pb(s);
-                    }
-            }
-    }
+bool cmp(pair<ll,ll>a, pair<ll,ll>b)
+{
+     if(a.first<b.first) return 1;
+     if(a.first==b.first)
+     {
+          if(a.second<=b.second) return 1;
+          return 0;
+     }
+     return 0;
 }
 int main()
 {
@@ -190,21 +166,59 @@ int main()
     freopen("outttt.txt","w",stdout);
 
 #endif
-int t;
-cin>>t;
-while(t--){
-   long long int n,m;
-    cin>>n>>m;
-  long long  int cnt=1,sum=1;
-    for(int i=0;i<2;i++)
+int n;
+int arr[25]={2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97};
+
+while(cin>>n && n!=0){
+int cl=n;
+int res[25]={0};
+while(n>1)
+{
+  int g=n;
+  int i=0;
+  while(g!=1)
+  {
+    int cnt=0;
+    while(g%arr[i]==0)
     {
-        cnt=cnt*m;
-        sum+=cnt;
+      g/=arr[i];
+      cnt++;
     }
-    cout<<sum<<endl;
+    res[i]+=cnt;
+    i++;
+  }
+  n--;
+
 
 
 }
+if(cl<10)
+cout<<"  "<<cl<<"! =";
+else if(cl<100)
+  cout<<" "<<cl<<"! =";
+else
+  cout<<cl<<"! =";
+
+
+for(int i=0;i<25;i++)
+{
+  if(res[i]==0)
+    break;
+  if(i==15)
+    cout<<endl<<"      ";
+
+  if(res[i]<10)
+  cout<<"  "<<res[i];
+else
+   cout<<" "<<res[i];
+
+
+
+}
+cout<<endl;
+
+}
+
 
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
