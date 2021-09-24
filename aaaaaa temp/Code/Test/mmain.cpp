@@ -146,42 +146,7 @@ int binarySearch(int arr[], int l, int r, int x)
     return -1;
 }
 
- long long int range        =   100000-10;
-vector<string> v;
-void makestring(){
-     for(char c='a';c<='z';c++)
-    {
-        string s="";
-        s+=c;
-         v.pb(s);
-    }
-    for(char c='a';c<='z';c++)
-    {
-        for(char d='a';d<='z';d++)
-            {
-                string ss="";
-                ss+=c;
-                ss+=d;
-                v.pb(ss);
-            }
-    }
-    for(char c='a';c<='z';c++)
-    {
-        for(char d='a';d<='z';d++)
-            {
-               
-                for(char e='a';e<='z';e++)
-                    {
-                        string s="";
-                        s+=c;
-                        s+=d;
-                        s+=e;
 
-                        v.pb(s);
-                    }
-            }
-    }
-}
 int main()
 {
 #ifdef SAKIB_OVI
@@ -190,21 +155,39 @@ int main()
     freopen("outttt.txt","w",stdout);
 
 #endif
-int t;
-cin>>t;
-while(t--){
-   long long int n,m;
-    cin>>n>>m;
-  long long  int cnt=1,sum=1;
-    for(int i=0;i<2;i++)
+    int t;
+    cin>>t;
+    while(t--)
     {
-        cnt=cnt*m;
-        sum+=cnt;
+        int n;
+        cin>>n;
+       int arr[n],arr2[n];
+       for(int i=0;i<n;i++){
+        cin>>arr[i];
+       }
+       for(int i=0;i<n;i++){
+        cin>>arr2[i];
+       }
+
+       for(int i=0;i<n;i++)
+       {
+        int g=arr2[i];
+        int c=0;
+        for(int j=0;j<n;j++)
+        {
+            if(arr[j]<g)
+            {
+                c=j;
+                break;
+            }
+        }
+        cout<<arr2[i]<<" "<<arr[c]<<endl;
+       }
+
+
+
+
     }
-    cout<<sum<<endl;
-
-
-}
 
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);

@@ -14,19 +14,19 @@
 // #include <complex>
 // #include <string>
 // #include <cstring>4 6
- 
- 
+
+
 // #include <bitset>
 using namespace std;
- 
+
 // #pragma GCC optimize("Ofast,no-stack-protector")
 // #pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
 // #pragma GCC optimize("unroll-loops")
- 
+
 #define ll              long long int
 #define vi              vector< int >
 #define vll             vector< ll >
- 
+
 #define sc              scanf
 #define pf              printf
 #define cspf(i)         pf("Case #%d: ", i)
@@ -35,7 +35,7 @@ using namespace std;
 #define yes             cout<<"YES"<<endl
 #define no             cout<<"NO"<<endl
 #define dib(x)         printf("x = %d,",x)
- 
+
 //------------------------------------
 #define ff              first
 #define ss              second
@@ -44,7 +44,7 @@ using namespace std;
 #define ppb             pop_back
 #define tp(v,j)         get<j>(v)
 #define Log(b,x)        (log(x)/log(b))
- 
+
 #define FOR(i,x,y)      for(int i = int(x); i < int(y); i++)
 #define ROF(i,x,y)      for(int i = int(x)-1; i >= int(y); i--)
 #define clr(arr,x)      memset(arr, x, sizeof arr)
@@ -53,7 +53,7 @@ using namespace std;
 #define rall(v)         v.rbegin(), v.rend()
 #define unq(v)          sort(all(v)),(v).resize(unique(all(v))-v.begin())
 #define fastIO          ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr)
- 
+
 #define sc1(x)          sc("%d",&x);
 #define sc2(x,y)        sc("%d %d", &x, &y)
 #define sc3(x,y,z)      sc("%d %d %d", &x, &y, &z)
@@ -61,23 +61,23 @@ using namespace std;
 #define scl2(x,y)       sc("%lld %lld", &x, &y)
 #define scf1(x)         sc("%lf",&x);
 #define scf2(x,y)       sc("%lf %lf", &x, &y)
- 
+
 #define pf1(x)          pf("%d",x);
 #define pf2(x,y)        pf("%d %d", x, y)
 #define pfl1(x)         pf("%lld",x);
 #define pfl2(x,y)       pf("%lld %lld", x, y)
 #define file              freopen("input.txt", "r", stdin);freopen("output.txt", "w", stdout);
- 
+
 #define MOD             (int)(998244353)
 #define MaxN            100005
 #define inf             0x3f3f3f3f
 #define PI              acos(-1.0)  // 3.1415926535897932
 #define eps             1e-6
 
- 
+
 //#define run_time
- 
- 
+
+
 #ifdef run_time
 #define debug(...) __f(#__VA_ARGS__, __VA_ARGS__)
 template < typename Arg1 >
@@ -95,7 +95,7 @@ void __f(const char* names, Arg1&& arg1, Args&&... args)
 #else
 #define debug(...)
 #endif
- 
+
 template <class T> inline T bigMod(T p,T e,T M)
 {
     T ret=1;
@@ -121,72 +121,30 @@ template <class T> inline T lcm(T a,T b)
     b=abs(b);
     return (a/gcd(a,b))*b;
 }
- 
+
 int dx[] = { 1,-1, 0, 0};                //graph moves
 int dy[] = { 0, 0, 1,-1};               //graph moves
 //________________________________________________________________________________________________________
 int binarySearch(int arr[], int l, int r, int x)
 {
- 
+
     if (r >= l)
     {
         int mid = l + (r - l) / 2;
- 
+
         if (arr[mid] == x)
             return mid;
- 
+
         if (arr[mid] > x)
             return binarySearch(arr, l, mid - 1, x);
- 
+
         return binarySearch(arr, mid + 1, r, x);
- 
- 
+
+
     }
- 
+
     return -1;
 }
-
-int n,m,mx=INT_MIN;
-vector<int> v,v1;
-int arr[20];
- void  bt(int i){
-    if(i==n)
-    {
-        int sum=0;
-        for(int i=0;i<v.size();i++)
-        {
-            sum+=v[i];
-            
-
-            
-        }
-       if(sum<=m && sum>mx)
-       {
-        mx=sum;
-        v1.clear();
-        for(int i=0;i<v.size();i++)
-        {
-            v1.push_back(v[i]);
-        }
-       }
-       
-        return;
-
-    }
-    //cout<<"previos"<<endl;
-    bt(i+1);
-    //cout<<"first"<<endl;
-    v.push_back(arr[i]);
-   // cout<<"in ="<<arr[i]<<endl;
-    // cout<<"g0 ="<<arr[i+1]<<endl;
-    bt(i+1);
-
-    //cout<<"last"<<endl;
-   //  cout<<"out ="<<v[v.size()-1]<<endl;
-    v.pop_back();
-    
-
- }
 
 
 int main()
@@ -194,23 +152,74 @@ int main()
 #ifdef SAKIB_OVI
     clock_t tStart = clock();
     freopen("input.txt","r",stdin);
-    freopen("output.txt","w",stdout);
-    
+    freopen("outttt.txt","w",stdout);
+
 #endif
-    while(cin>>m>>n){
-     for(int i=0;i<n;i++){
+    int n,m,l;
+    cin>>n>>m>>l;
+    long long int arr[n+1];
+    int cnt=0;
+    for(int i=1; i<=n; i++)
+    {
         cin>>arr[i];
-     }
-     mx=INT_MIN;
-      //no save  
-     bt(0);
-     for(int i=0;i<v1.size();i++)
-     {
-        cout<<v1[i]<<" ";
-     }
-     cout<<"sum:"<<mx<<endl;
+        if(arr[i]>l && arr[i-1]<=l && i>0 || i==1 && arr[i]>l)
+        {
+
+            cnt++;
+        }
+    }
+    while(m--)
+    {
+        int q;
+        cin>>q;
+
+
+        if(q==0)
+        {
+            cout<<cnt<<endl;
+        }
+        else
+        {
+            int a,b;
+            cin>>a>>b;
+            if(arr[a]<=l && arr[a]+b>l )
+            {
+                if(n==1 && cnt==0)
+                    cnt++;
+                else
+                {
+                    if(a==1 )
+                    {
+                        if(arr[a+1]<=l)
+                            cnt++;
+                    }
+                    else if(a==n )
+                    {
+                        if(arr[a-1]<=l)
+                            cnt++;
+                    }
+                    else
+                    {
+                        if(arr[a+1]>l && arr[a-1]>l )
+                            cnt--;
+                        else if(arr[a+1]<=l && arr[a-1]<=l )
+                        {
+                            cnt++;
+
+                        }
+                    }
+
+                }
+
+
+
+
+            }
+            arr[a]+=b;
+        }
 
     }
+
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif
