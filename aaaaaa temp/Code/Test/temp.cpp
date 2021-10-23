@@ -197,20 +197,27 @@ int main()
     freopen("output.txt","w",stdout);
     
 #endif
-    while(cin>>m>>n){
-     for(int i=0;i<n;i++){
-        cin>>arr[i];
-     }
-     mx=INT_MIN;
-      //no save  
-     bt(0);
-     for(int i=0;i<v1.size();i++)
-     {
-        cout<<v1[i]<<" ";
-     }
-     cout<<"sum:"<<mx<<endl;
-
+    int t;
+   while(cin>>t && t!=-1)
+   {
+    while(t--)
+    {
+        int d,k;
+        cin>>d>>k;
+        int n=(1<<(d))-1,p=1;
+       // cout<<n<<endl;
+        while(p+p<=n)
+        {
+            if(k%2)p+=p;
+            else
+                p+=p+1;
+            k=(k+1)/2;
+        }
+        cout<<p<<endl;
     }
+   }
+
+   
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif

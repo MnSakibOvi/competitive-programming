@@ -1,4 +1,3 @@
-
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -157,30 +156,6 @@ bool cmp(pair<ll,ll>a, pair<ll,ll>b)
      }
      return 0;
 }
-void A(int n, int pos){
-    printf("sin(%d",pos);
-    
-    if(pos < n){
-        if(pos & 1) putchar('-');
-        else putchar('+');
-        
-        A(n,pos + 1);
-    }
-    
-    putchar(')');
-}
-
-void S(int n, int pos){
-    if(pos < n){
-        putchar('(');
-        S(n,pos + 1);
-        putchar(')');
-    }
-    
-    A(n + 1 - pos,1);
-    
-    printf("+%d",pos);
-}
 
 int main()
 {
@@ -190,12 +165,28 @@ int main()
     freopen("output.txt","w",stdout);
 
 #endif
-    
-   int N;
-    
-    scanf("%d",&N);
-    
-    S(N,1);
+  int n,m,k,x,cnt=0,fl=0;
+  cin>>n>>m>>k;
+  for(int i=0;i<n;i++)
+  {
+    cin>>x;
+    if(x>m)
+        cnt++;
+    if(x>=m)
+        fl=1;
+
+
+  }
+ 
+  if(fl==0 && cnt==0)
+    cnt++;
+ //cout<<cnt<<endl;
+  if(cnt>k)
+    cout<<"NO"<<endl;
+else
+    cout<<"YES"<<endl;
+
+ 
 
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);

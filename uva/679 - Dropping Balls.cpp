@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -146,33 +147,48 @@ int binarySearch(int arr[], int l, int r, int x)
     return -1;
 }
 
-int par[100];
-int sz[100];
-struct  node {
-int a,b,c;
-};
-bool cmp(node x,node y){
-    return x.c<y.c;
-}
-int findparent(int v){
-    if(par[v]==v)
-        return v;
-    return par[v]=findparent(par[v]);
+int n,m,mx=INT_MIN;
+vector<int> v,v1;
+int arr[20];
+ void  bt(int i){
+    if(i==n)
+    {
+        int sum=0;
+        for(int i=0;i<v.size();i++)
+        {
+            sum+=v[i];
 
-}
-void join(int p,int q){
-    if(sz[q]>=sz[p])
-   {
-     par[p]=q;//q is the new parant
-    sz[q]+=sz[p];
-   }
-   else
-   {
-   par[q]=p;//q is the new parant
-   sz[p]+=sz[q];
-   }
 
-}
+
+        }
+       if(sum<=m && sum>mx)
+       {
+        mx=sum;
+        v1.clear();
+        for(int i=0;i<v.size();i++)
+        {
+            v1.push_back(v[i]);
+        }
+       }
+
+        return;
+
+    }
+    //cout<<"previos"<<endl;
+    bt(i+1);
+    //cout<<"first"<<endl;
+    v.push_back(arr[i]);
+   // cout<<"in ="<<arr[i]<<endl;
+    // cout<<"g0 ="<<arr[i+1]<<endl;
+    bt(i+1);
+
+    //cout<<"last"<<endl;
+   //  cout<<"out ="<<v[v.size()-1]<<endl;
+    v.pop_back();
+
+
+ }
+
 
 int main()
 {
@@ -182,38 +198,26 @@ int main()
     freopen("output.txt","w",stdout);
 
 #endif
-   int n,m;
-   cin>>n>>m;
-   vector<node> v;
-
-   for(int i=0;i<n;i++)
+    int t;
+   while(cin>>t && t!=-1)
    {
-    par[i]=i;
-    sz[i]=1;
-   }
-   while(m--)
-   {
-    int a,b,x;
-    cin>>a>>b>>x;
-    v.push_back({a,b,x});
-   }
-   sort(v.begin(),v.end(),cmp);
-   int sum=0;
-   for(auto u:v){
-        int x,y,z;
-        x=u.a;
-        y=u.b;
-        z=u.c; 
-        int p=findparent(x);
-        int q=findparent(y);
-        if(p!=q){
-            cout<<x<<" "<<y<<" "<<z<<endl;
-            join(p,q);
-            sum+=z;
-         
+    while(t--)
+    {
+        int d,k;
+        cin>>d>>k;
+        int n=(1<<(d))-1,p=1;
+       // cout<<n<<endl;
+        while(p+p<=n)
+        {
+            if(k%2)p+=p;
+            else
+                p+=p+1;
+            k=(k+1)/2;
         }
+        cout<<p<<endl;
     }
- cout<<sum<<endl;
+   }
+
 
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);

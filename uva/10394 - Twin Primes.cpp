@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 // #include <iostream>
 // #include <cstdio>
@@ -125,7 +126,7 @@ template <class T> inline T lcm(T a,T b)
 int dx[] = { 1,-1, 0, 0};                //graph moves
 int dy[] = { 0, 0, 1,-1};               //graph moves
 //________________________________________________________________________________________________________
-int binarySearch(int arr[], int l, int r, int x)
+/*int binarySearch(int arr[], int l, int r, int x)
 {
 
     if (r >= l)
@@ -146,34 +147,86 @@ int binarySearch(int arr[], int l, int r, int x)
     return -1;
 }
 
-int par[100];
-int sz[100];
-struct  node {
-int a,b,c;
-};
-bool cmp(node x,node y){
-    return x.c<y.c;
-}
-int findparent(int v){
-    if(par[v]==v)
-        return v;
-    return par[v]=findparent(par[v]);
+
+ void  bt(int i){
+    if(i==n)
+    {
+        int sum=0;
+        for(int i=0;i<v.size();i++)
+        {
+            sum+=v[i];
+
+
+
+        }
+       if(sum<=m && sum>mx)
+       {
+        mx=sum;
+        v1.clear();
+        for(int i=0;i<v.size();i++)
+        {
+            v1.push_back(v[i]);
+        }
+       }
+
+        return;
+
+    }
+    //cout<<"previos"<<endl;
+    bt(i+1);
+    //cout<<"first"<<endl;
+    v.push_back(arr[i]);
+   // cout<<"in ="<<arr[i]<<endl;
+    // cout<<"g0 ="<<arr[i+1]<<endl;
+    bt(i+1);
+
+    //cout<<"last"<<endl;
+   //  cout<<"out ="<<v[v.size()-1]<<endl;
+    v.pop_back();
+
+
+ }
+*/
+vector< pair <int,int> > arr;
+bool prime[20000002];
+void prime_gen()
+{
+        memset(prime, true, sizeof(prime));
+         for (int p = 2; p * p <= 20000002; p++)
+            {
+
+                if (prime[p] == true)
+                {
+
+                    for (int i = p * p; i <= 20000002; i += p)
+                        prime[i] = false;
+                }
+            }
+
+     int cnt=1,cl=0;
+
+      arr.push_back( make_pair(3,5 ));
+    for (int p = 2; p <= 20000001; p++)
+       {
+        if (prime[p] )
+
+                {
+                    if(p>=7)
+                    {
+                        if(p-cl==2)
+                        {
+                            arr.push_back( make_pair(cl,p ));
+
+                        }
+                    }
+
+                    cl=p;
+                }
+       }
+
+
 
 }
-void join(int p,int q){
-    if(sz[q]>=sz[p])
-   {
-     par[p]=q;//q is the new parant
-    sz[q]+=sz[p];
-   }
-   else
-   {
-   par[q]=p;//q is the new parant
-   sz[p]+=sz[q];
-   }
-
-}
-
 int main()
 {
 #ifdef SAKIB_OVI
@@ -182,38 +235,13 @@ int main()
     freopen("output.txt","w",stdout);
 
 #endif
-   int n,m;
-   cin>>n>>m;
-   vector<node> v;
 
-   for(int i=0;i<n;i++)
-   {
-    par[i]=i;
-    sz[i]=1;
-   }
-   while(m--)
-   {
-    int a,b,x;
-    cin>>a>>b>>x;
-    v.push_back({a,b,x});
-   }
-   sort(v.begin(),v.end(),cmp);
-   int sum=0;
-   for(auto u:v){
-        int x,y,z;
-        x=u.a;
-        y=u.b;
-        z=u.c; 
-        int p=findparent(x);
-        int q=findparent(y);
-        if(p!=q){
-            cout<<x<<" "<<y<<" "<<z<<endl;
-            join(p,q);
-            sum+=z;
-         
-        }
-    }
- cout<<sum<<endl;
+prime_gen();
+int n;
+while(cin>>n){
+    cout<<"("<<arr[n-1].first<<", "<<arr[n-1].second<<")"<<endl;
+}
+
 
 #ifdef SAKIB_OVI
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
